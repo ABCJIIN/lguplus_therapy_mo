@@ -1,0 +1,296 @@
+@import "../common/common";
+
+@keyframes slideUp {
+    0% {
+        bottom: -100%;
+    }
+    100% {
+        bottom: 0;
+    }
+}
+
+.wrapper {
+    &.recordings {
+        position: relative;
+        max-width: 76.8rem;
+        margin: 0 auto;
+        background: #F4F8F8;
+        header {
+            width: 100%;
+            height: 6.2rem;
+            position: sticky;
+            top: 0;
+            left: 0;
+            border-bottom: 1px solid #F0F3F4;
+            background: $gray0;
+            backdrop-filter: blur(2px);
+            > .inner {
+                width: 100%;
+                padding: 1.3rem 2rem;
+                @include flexbox(row, space-between, center);
+                .logo {
+                    a {
+                        @include flexbox(row, flex-start, center);
+                        gap: .5rem;
+                        .img-logo {
+                            width: 3.6rem;
+                            height: 3.6rem;
+                            object-fit: contain;
+                        }
+                        .txt-logo {
+                            width: 8.9rem;
+                            height: 2.8rem;
+                            object-fit: contain;
+                        }
+                    }
+                }
+                .util-area {
+                    .btn-wrap {
+                        @include flexbox(row, flex-end, center);
+                        gap: 1.2rem;
+                        // display: none;
+                        button {
+                            width: 2.4rem;
+                            height: 2.4rem;
+                            border: none;
+                            &.search-btn {
+                                background: url(../../../assets/images/icon/search.svg) no-repeat center/contain;
+                            }
+                            &.edit-btn {
+                                background: url(../../../assets/images/icon/edit.svg) no-repeat center/contain;
+                            }
+                        }
+                    }
+                    .cancel-btn {
+                        font-size: 1.6rem;
+                        font-weight: 700;
+                        color: $gray400;
+                        padding: 0;
+                        border: none;
+                        background: none;
+                        display: none;
+                    }
+                }
+            }
+        }
+        main {
+            width: calc(100% - 4rem);
+            margin: 0 auto;
+            min-height: calc(100vh - 6.2rem);
+            // @include flexbox(column, center, center);
+            > .inner {
+                width: 100%;
+                .empty {
+                    min-height: calc(100vh - 6.2rem);
+                    @include flexbox(column, center, center);
+                    gap: 2.4rem;
+                    img {
+                        width: 8.5rem;
+                        height: 7.9rem;
+                        background: url(../../../assets/images/common/empty_face.svg) no-repeat center/contain;
+                    }
+                    .info {
+                        text-align: center;
+                        font-weight: 500;
+                        color: $gray300;
+                    }
+                }
+                .con-wrap {
+                    .sorting-wrap {
+                        @include flexbox(row, flex-end, center);
+                        .sorting-btn {
+                            position: relative;
+                            padding: 1.4rem 1.8rem;
+                            font-size: 1.4rem;
+                            font-weight: 500;
+                            color: $gray800;
+                            background: transparent;
+                            &::before {
+                                content: "";
+                                position: absolute;
+                                top: 50%;
+                                right: 0;
+                                transform: translateY(-50%);
+                                width: 1.4rem;
+                                height: 1.4rem;
+                                background: url(../../../assets/images/icon/arrow_down.svg) no-repeat center/contain;
+                            }
+                        }
+                    }
+                    .list-wrap {
+                        padding-bottom: 2.2rem;
+                        ul {
+                            width: 100%;
+                            @include flexbox(column, flex-start, flex-start);
+                            gap: .8rem;
+                            li {
+                                width: 100%;
+                                padding: 1.4rem 1.6rem;
+                                border-radius: 1.2rem;
+                                background: $gray0;
+                                box-shadow: 0px 1px 6px 0px rgba(195, 195, 195, 0.20);
+                                @include flexbox(row, flex-start, flex-start);
+                                gap: 1rem;
+                                .input-wrap {
+                                    width: 2.4rem;
+                                    label {
+                                        padding-left: 2rem;
+                                        margin-left: .2rem;
+                                    }
+                                }
+                                .info-wrap {
+                                    width: calc(100% - 3.4rem);
+                                    .detail-wrap {
+                                        height: 2.3rem;
+                                        @include flexbox(row, space-between, center);
+                                        .client-info {
+                                            @include flexbox(row, flex-start, center);
+                                            gap: .8rem;
+                                            .client {
+                                                font-size: 1.4rem;
+                                                font-weight: 500;
+                                                color: $gray800;
+                                            }
+                                            .session {
+                                                font-size: 1.4rem;
+                                                font-weight: 500;
+                                                color: $gray400;
+                                            }
+                                        }
+                                    }
+                                    .title-wrap {
+                                        margin-bottom: .8rem;
+                                        @include flexbox(row, space-between, center);
+                                        strong {
+                                            @include ellipsis(1);
+                                            font-size: 1.8rem;
+                                            font-weight: 600;
+                                        }
+                                    }
+                                    .datetime-wrap {
+                                        @include flexbox(row, flex-start, center);
+                                        gap: 2.4rem;
+                                        span {
+                                            position: relative;
+                                            font-size: 1.4rem;
+                                            font-weight: 500;
+                                            color: $gray300;
+                                        }
+                                        .date {
+                                            &::before {
+                                                content: "";
+                                                position: absolute;
+                                                right: -1.2rem;
+                                                top: 50%;
+                                                transform: translateY(-50%);
+                                                width: 1px;
+                                                height: 1.1rem;
+                                                background: $gray200;
+                                            }
+                                        }
+                                    }
+                                    .tag {
+                                        display: inline-block;
+                                        height: 2.3rem;
+                                        padding: 0 .5rem;
+                                        line-height: 2.3rem;
+                                        font-size: 1.3rem;
+                                        white-space: nowrap;
+                                        border-radius: .5rem;
+                                        &.convert {
+                                            color: $gray300;
+                                            background: $gray50;
+                                        }
+                                        &.upload {
+                                            color: $gray300;
+                                            background: $gray50;
+                                        }
+                                        &.upload-fail {
+                                            color: $orange500;
+                                            background: $orange100;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .bottom-sheet {
+                    max-width: 76.8rem;
+                    position: fixed;
+                    top: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 100vw;
+                    height: 100vh;
+                    background: rgba(0, 0, 0, 0.30);
+                    z-index: 20;
+                    display: none;
+                    &.on {
+                        display: block;
+                        .inner {
+                            animation: slideUp .5s;
+                        }
+                    }
+                    .inner {
+                        width: 100%;
+                        position: absolute;
+                        bottom: 0;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        border-radius: 1.6rem 1.6rem 0 0;
+                        background: $gray0;
+                        overflow: hidden;
+                        .hd-wrap {
+                            padding: 2rem;
+                            @include flexbox(row, space-between, center);
+                            border-bottom: 1px solid $gray50;
+                            strong {
+                                font-size: 2rem;
+                                font-weight: 700;
+                                color: #292B2E;
+                            }
+                            .close-btn {
+                                width: 2.4rem;
+                                height: 2.4rem;
+                                background: url(../../../assets/images/icon/close.svg) no-repeat center/contain;
+                            }
+                        }
+                        .list-wrap {
+                            padding-bottom: 3rem;
+                            ul {
+                                width: 100%;
+                                li {
+                                    width: 100%;
+                                    border-bottom: 1px solid $gray50;
+                                    a {
+                                        display: inline-block;
+                                        width: 100%;
+                                        padding: 2rem;
+                                        font-size: 1.8rem;
+                                        font-weight: 600;
+                                        color: $gray800;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .floating-area {
+                    position: fixed;
+                    left: 50%;
+                    bottom: 5rem;
+                    transform: translateX(-50%);
+                    .mic-btn {
+                        width: 7.6rem;
+                        height: 7.6rem;
+                        border-radius: 50%;
+                        background: url(../../../assets/images/icon/mic.svg) no-repeat center/32px $secondary500;
+                        box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, 0.20);
+                        z-index: 10;
+                    }
+                }
+            }
+        }
+    }
+}
