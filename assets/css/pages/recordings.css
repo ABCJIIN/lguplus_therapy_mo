@@ -936,6 +936,28 @@ span.tag.critical {
   max-width: 76.8rem;
   margin: 0 auto;
   background: #F4F8F8;
+  /* 편집모드 */
+}
+.wrapper.recordings.edit header > .inner .util-area .btn-wrap {
+  display: none;
+}
+.wrapper.recordings.edit header > .inner .util-area .cancel-btn {
+  display: block;
+}
+.wrapper.recordings.edit main > .inner .con-wrap .list-wrap {
+  padding-bottom: 9.9rem;
+}
+.wrapper.recordings.edit main > .inner .con-wrap .list-wrap ul li .input-wrap {
+  display: block;
+}
+.wrapper.recordings.edit main > .inner .con-wrap .list-wrap ul li .info-wrap {
+  width: calc(100% - 3.4rem);
+}
+.wrapper.recordings.edit main > .inner .delete-wrap {
+  display: block;
+}
+.wrapper.recordings.edit main > .inner .floating-wrap.mic {
+  display: none;
 }
 .wrapper.recordings header {
   width: 100%;
@@ -946,6 +968,7 @@ span.tag.critical {
   border-bottom: 1px solid #F0F3F4;
   background: #FFFFFF;
   backdrop-filter: blur(2px);
+  z-index: 10;
 }
 .wrapper.recordings header > .inner {
   width: 100%;
@@ -1074,13 +1097,14 @@ span.tag.critical {
 }
 .wrapper.recordings main > .inner .con-wrap .list-wrap ul li .input-wrap {
   width: 2.4rem;
+  display: none;
 }
 .wrapper.recordings main > .inner .con-wrap .list-wrap ul li .input-wrap label {
   padding-left: 2rem;
   margin-left: 0.2rem;
 }
 .wrapper.recordings main > .inner .con-wrap .list-wrap ul li .info-wrap {
-  width: calc(100% - 3.4rem);
+  width: 100%;
 }
 .wrapper.recordings main > .inner .con-wrap .list-wrap ul li .info-wrap .detail-wrap {
   height: 2.3rem;
@@ -1165,12 +1189,12 @@ span.tag.critical {
   background: #FFEDD4;
 }
 .wrapper.recordings main > .inner .bottom-sheet {
-  max-width: 76.8rem;
   position: fixed;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
   width: 100vw;
+  max-width: 76.8rem;
   height: calc(var(--vh, 1vh) * 100);
   background: rgba(0, 0, 0, 0.3);
   z-index: 20;
@@ -1228,13 +1252,33 @@ span.tag.critical {
   font-weight: 600;
   color: #434547;
 }
-.wrapper.recordings main > .inner .floating-area {
+.wrapper.recordings main > .inner .delete-wrap {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  max-width: 76.8rem;
+  padding: 1.2rem 2rem;
+  z-index: 15;
+  border-top: 1px solid #DCE4E7;
+  background: #FFFFFF;
+  display: none;
+}
+.wrapper.recordings main > .inner .delete-wrap .delete-btn {
+  width: 100%;
+  height: 5.2rem;
+  border-radius: 1rem;
+  font-weight: 700;
+  background: #EFF2F3;
+}
+.wrapper.recordings main > .inner .floating-wrap {
   position: fixed;
   left: 50%;
   bottom: 3rem;
   transform: translateX(-50%);
 }
-.wrapper.recordings main > .inner .floating-area .mic-btn {
+.wrapper.recordings main > .inner .floating-wrap .mic-btn {
   width: 7.6rem;
   height: 7.6rem;
   border-radius: 50%;
