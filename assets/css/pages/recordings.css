@@ -1228,7 +1228,7 @@ span.tag.critical {
 .wrapper.recordings main > .inner .floating-area {
   position: fixed;
   left: 50%;
-  bottom: 5rem;
+  bottom: 3rem;
   transform: translateX(-50%);
 }
 .wrapper.recordings main > .inner .floating-area .mic-btn {
