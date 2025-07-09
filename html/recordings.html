@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LG U+ 심리케어 서비스 - 녹음중</title>
+    <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon"/>
+    <!-- css -->
+    <link rel="stylesheet" href="../assets/css/reset.css">
+    <link rel="stylesheet" href="../assets/css/font.css">
+    <link rel="stylesheet" href="../assets/css/pages/recordings.css">
+    <!-- js -->
+    <script src="../assets/js/jquery-3.7.1.min.js"></script>
+    <script src="../assets/js/common.js"></script>
+
+    <!-- 오디오 파형 라이브러리 -->
+    <script src="https://unpkg.com/wavesurfer.js@7"></script>
+</head>
+<body>
+    <div class="wrapper recordings">
+        <header>
+            <div class="inner">
+                <button class="back-btn" type="button" aria-label="뒤로가기"></button>
+                <strong class="page-tit">녹음중</strong>
+                <button class="help-btn" type="button">HELP</button>
+            </div>
+        </header>
+        <main>
+            <div class="inner">
+                <div class="con-wrap">
+                    <div class="info-wrap">
+                        <strong class="recording-tit">상담 녹음 파일명</strong>
+                        <p class="datetime-wrap">
+                            <span class="date">2025.04.25(금)</span> <span class="time">오전 10:11</span>
+                        </p>
+                    </div>
+
+
+                    <div class="waveform-wrap">
+                        <div id="waveform"></div>
+                    </div>
+
+                    <div class="controls">
+                        <button id="play">재생</button>
+                        <button id="pause">일시정지</button>
+                        <button id="stop">정지</button>
+                    </div>
+
+
+                </div>
+                <!-- 녹음 파일명 입력 on class 추가 -->
+                <div class="bottom-sheet file-name">
+                    <div class="inner">
+                        <div class="hd-wrap">
+                            <strong>녹음 파일명 입력</strong>
+                            <button class="close-btn" type="button" aria-label="닫기"></button>
+                        </div>
+                        <div class="input-wrap">
+                            <input id="fileName" type="text" placeholder="녹음 파일명을 입력해 주세요.">
+                            <label class="hide" for="fileName"></label>
+                        </div>
+                        <div class="btn-wrap">
+                            <button class="save-btn" type="button">저장하기</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="complete-wrap">
+                    <button class="complete-btn" type="button">완료</button>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        const wavesurfer = WaveSurfer.create({
+            container: '#waveform',
+            height: 300,
+            waveColor: '#A7B5BC',
+            progressColor: '#A7B5BC',
+            cursorColor: '#32D074',
+            cursorWidth: 1,
+            url: '../assets/audio/test_audio.mp3',
+
+            // Set a bar width
+            barWidth: 3,
+            barMinHeight: 3,
+            // Optionally, specify the spacing between bars
+            barGap: 2,
+            // And the bar radius
+            barRadius: 2,
+            // 커서 중앙 정렬?
+            autoScroll: true,
+            autoCenter: true,
+            
+        })
+    </script>
+</body>
+</html>

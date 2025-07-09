@@ -1057,3 +1057,48 @@ span {
         color: $gray800;
     }
 }
+
+/* 바텀시트 */
+.bottom-sheet {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    max-width: 76.8rem;
+    height: calc(var(--vh, 1vh) * 100);
+    background: rgba(0, 0, 0, 0.30);
+    z-index: 20;
+    display: none;
+    &.on {
+        display: block;
+        .inner {
+            animation: slideUp .5s;
+        }
+    }
+    .inner {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 1.6rem 1.6rem 0 0;
+        background: $gray0;
+        overflow: hidden;
+        .hd-wrap {
+            padding: 2rem;
+            @include flexbox(row, space-between, center);
+            border-bottom: 1px solid $gray50;
+            strong {
+                font-size: 2rem;
+                font-weight: 700;
+                color: #292B2E;
+            }
+            .close-btn {
+                width: 2.4rem;
+                height: 2.4rem;
+                background: url(../../../assets/images/icon/close.svg) no-repeat center/contain;
+            }
+        }
+    }
+}

@@ -1,0 +1,325 @@
+@import "../common/common";
+
+@keyframes slideUp {
+    0% {
+        bottom: -100%;
+    }
+    100% {
+        bottom: 0;
+    }
+}
+
+/* 녹음 목록 */
+.wrapper {
+    &.home {
+        position: relative;
+        max-width: 76.8rem;
+        margin: 0 auto;
+        background: #F4F8F8;
+        /* 편집모드 */
+        &.edit {
+            header {
+                > .inner {
+                    .util-area {
+                        .btn-wrap {
+                            display: none;
+                        }
+                        .cancel-btn {
+                            display: block;
+                        }
+                    }
+                }
+            }
+            main {
+                > .inner {
+                    .con-wrap {
+                        .list-wrap {
+                            padding-bottom: 9.9rem;
+                            ul {
+                                li {
+                                    .input-wrap {
+                                        display: block;
+                                    }
+                                    .info-wrap {
+                                        width: calc(100% - 3.4rem);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .delete-wrap {
+                        display: block;
+                    }
+                    .floating-wrap.mic {
+                        display: none;
+                    }
+                }
+            }
+        }
+        header {
+            width: 100%;
+            height: 6.2rem;
+            position: sticky;
+            top: 0;
+            left: 0;
+            border-bottom: 1px solid #F0F3F4;
+            background: $gray0;
+            backdrop-filter: blur(2px);
+            z-index: 10;
+            > .inner {
+                width: 100%;
+                padding: 1.3rem 2rem;
+                @include flexbox(row, space-between, center);
+                .logo {
+                    a {
+                        @include flexbox(row, flex-start, center);
+                        gap: .5rem;
+                        .img-logo {
+                            width: 3.6rem;
+                            height: 3.6rem;
+                            object-fit: contain;
+                        }
+                        .txt-logo {
+                            width: 8.9rem;
+                            height: 2.8rem;
+                            object-fit: contain;
+                        }
+                    }
+                }
+                .util-area {
+                    .btn-wrap {
+                        @include flexbox(row, flex-end, center);
+                        gap: 1.2rem;
+                        button {
+                            width: 2.4rem;
+                            height: 2.4rem;
+                            border: none;
+                            &.search-btn {
+                                background: url(../../../assets/images/icon/search.svg) no-repeat center/contain;
+                            }
+                            &.edit-btn {
+                                background: url(../../../assets/images/icon/edit.svg) no-repeat center/contain;
+                            }
+                        }
+                    }
+                    .cancel-btn {
+                        font-size: 1.6rem;
+                        font-weight: 700;
+                        color: $gray400;
+                        padding: 0;
+                        border: none;
+                        background: none;
+                        display: none;
+                    }
+                }
+            }
+        }
+        main {
+            width: calc(100% - 4rem);
+            margin: 0 auto;
+            min-height: calc(100vh - 6.2rem);
+            > .inner {
+                width: 100%;
+                .empty {
+                    min-height: calc(100vh - 6.2rem);
+                    @include flexbox(column, center, center);
+                    gap: 2.4rem;
+                    img {
+                        width: 8.5rem;
+                        height: 7.9rem;
+                        background: url(../../../assets/images/common/empty_face.svg) no-repeat center/contain;
+                    }
+                    .info {
+                        text-align: center;
+                        font-weight: 500;
+                        color: $gray300;
+                    }
+                }
+                .con-wrap {
+                    .sorting-wrap {
+                        @include flexbox(row, flex-end, center);
+                        .sorting-btn {
+                            position: relative;
+                            padding: 1.4rem 1.8rem;
+                            font-size: 1.4rem;
+                            font-weight: 500;
+                            color: $gray800;
+                            background: transparent;
+                            &::before {
+                                content: "";
+                                position: absolute;
+                                top: 50%;
+                                right: 0;
+                                transform: translateY(-50%);
+                                width: 1.4rem;
+                                height: 1.4rem;
+                                background: url(../../../assets/images/icon/arrow_down.svg) no-repeat center/contain;
+                            }
+                        }
+                    }
+                    .list-wrap {
+                        padding-bottom: 2.2rem;
+                        ul {
+                            width: 100%;
+                            @include flexbox(column, flex-start, flex-start);
+                            gap: .8rem;
+                            li {
+                                width: 100%;
+                                padding: 1.4rem 1.6rem;
+                                border-radius: 1.2rem;
+                                background: $gray0;
+                                box-shadow: 0px 1px 6px 0px rgba(195, 195, 195, 0.20);
+                                @include flexbox(row, flex-start, flex-start);
+                                gap: 1rem;
+                                .input-wrap {
+                                    width: 2.4rem;
+                                    display: none;
+                                    label {
+                                        padding-left: 2rem;
+                                        margin-left: .2rem;
+                                    }
+                                }
+                                .info-wrap {
+                                    width: 100%;
+                                    .detail-wrap {
+                                        height: 2.3rem;
+                                        @include flexbox(row, space-between, center);
+                                        .client-info {
+                                            @include flexbox(row, flex-start, center);
+                                            gap: .8rem;
+                                            .client {
+                                                font-size: 1.4rem;
+                                                font-weight: 500;
+                                                color: $gray800;
+                                            }
+                                            .session {
+                                                font-size: 1.4rem;
+                                                font-weight: 500;
+                                                color: $gray400;
+                                            }
+                                        }
+                                    }
+                                    .title-wrap {
+                                        margin-bottom: .8rem;
+                                        @include flexbox(row, space-between, center);
+                                        strong {
+                                            @include ellipsis(1);
+                                            font-size: 1.8rem;
+                                            font-weight: 600;
+                                        }
+                                    }
+                                    .datetime-wrap {
+                                        @include flexbox(row, flex-start, center);
+                                        gap: 2.4rem;
+                                        span {
+                                            position: relative;
+                                            font-size: 1.4rem;
+                                            font-weight: 500;
+                                            color: $gray300;
+                                        }
+                                        .date {
+                                            &::before {
+                                                content: "";
+                                                position: absolute;
+                                                right: -1.2rem;
+                                                top: 50%;
+                                                transform: translateY(-50%);
+                                                width: 1px;
+                                                height: 1.1rem;
+                                                background: $gray200;
+                                            }
+                                        }
+                                    }
+                                    .tag {
+                                        display: inline-block;
+                                        height: 2.3rem;
+                                        padding: 0 .5rem;
+                                        line-height: 2.3rem;
+                                        font-size: 1.3rem;
+                                        white-space: nowrap;
+                                        border-radius: .5rem;
+                                        &.convert {
+                                            color: $gray300;
+                                            background: $gray50;
+                                        }
+                                        &.upload {
+                                            color: $gray300;
+                                            background: $gray50;
+                                        }
+                                        &.upload-fail {
+                                            color: $orange500;
+                                            background: $orange100;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .bottom-sheet {
+                    &.sorting {
+                        .inner {
+                            .list-wrap {
+                                padding-bottom: 3rem;
+                                ul {
+                                    width: 100%;
+                                    li {
+                                        width: 100%;
+                                        border-bottom: 1px solid $gray50;
+                                        a {
+                                            display: inline-block;
+                                            width: 100%;
+                                            padding: 2rem;
+                                            font-size: 1.8rem;
+                                            font-weight: 600;
+                                            color: $gray800;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .delete-wrap {
+                    position: fixed;
+                    bottom: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 100vw;
+                    max-width: 76.8rem;
+                    padding: 1.2rem 2rem;
+                    z-index: 15;
+                    border-top: 1px solid $gray100;
+                    background: $gray0;
+                    display: none;
+                    .delete-btn {
+                        width: 100%;
+                        height: 5.2rem;
+                        border-radius: 1rem;
+                        font-weight: 700;
+                        color: $gray950;
+                        background: $gray50;
+                        &:disabled {
+                            color: $gray200;
+                            background: rgba(239, 242, 243, 0.70);
+                        }
+                    }
+                }
+                .floating-wrap {
+                    position: fixed;
+                    left: 50%;
+                    bottom: 3rem;
+                    transform: translateX(-50%);
+                    .mic-btn {
+                        width: 7.6rem;
+                        height: 7.6rem;
+                        border-radius: 50%;
+                        background: url(../../../assets/images/icon/mic.svg) no-repeat center/32px $secondary500;
+                        box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, 0.20);
+                        z-index: 10;
+                    }
+                }
+            }
+        }
+    }
+}
