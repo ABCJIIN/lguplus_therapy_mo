@@ -15,6 +15,7 @@
 
     <!-- 오디오 파형 라이브러리 -->
     <script src="https://unpkg.com/wavesurfer.js@7"></script>
+    <script src="https://unpkg.com/wavesurfer.js@7/dist/plugins/regions.min.js"></script>
 </head>
 <body>
     <div class="wrapper recordings">
@@ -34,19 +35,19 @@
                             <span class="date">2025.04.25(금)</span> <span class="time">오전 10:11</span>
                         </p>
                     </div>
-
-
                     <div class="waveform-wrap">
                         <div id="waveform"></div>
                     </div>
-
-                    <div class="controls">
-                        <button id="play">재생</button>
-                        <button id="pause">일시정지</button>
-                        <button id="stop">정지</button>
+                    <div class="recording-time">
+                        <strong>00:00.00</strong>
                     </div>
-
-
+                    <div class="control-wrap">
+                        <button class="recording-btn on" type="button" aria-label="녹음"></button>
+                        <button class="pause-btn" type="button" aria-label="정지"></button>
+                    </div>
+                </div>
+                <div class="complete-wrap">
+                    <button class="complete-btn" type="button">완료</button>
                 </div>
                 <!-- 녹음 파일명 입력 on class 추가 -->
                 <div class="bottom-sheet file-name">
@@ -64,9 +65,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="complete-wrap">
-                    <button class="complete-btn" type="button">완료</button>
-                </div>
             </div>
         </main>
     </div>
@@ -78,7 +76,7 @@
             progressColor: '#A7B5BC',
             cursorColor: '#32D074',
             cursorWidth: 1,
-            url: '../assets/audio/test_audio.mp3',
+            url: '../assets/audio/test.mp3',
 
             // Set a bar width
             barWidth: 3,
@@ -91,7 +89,11 @@
             autoScroll: true,
             autoCenter: true,
             
-        })
+        });
+
+        wavesurfer.on('click', () => {
+            wavesurfer.play()
+        });
     </script>
 </body>
 </html>

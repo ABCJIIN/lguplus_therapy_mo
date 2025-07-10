@@ -7,10 +7,8 @@
         max-width: 76.8rem;
         margin: 0 auto;
         background: $gray0;
-        background: pink;
         header {
             width: 100%;
-            height: 6.2rem;
             position: sticky;
             top: 0;
             left: 0;
@@ -19,7 +17,9 @@
             backdrop-filter: blur(2px);
             z-index: 10;
             > .inner {
+                position: relative;
                 width: 100%;
+                height: 6.2rem;
                 padding: 1.3rem 2rem;
                 @include flexbox(row, space-between, center);
                 .back-btn {
@@ -29,6 +29,10 @@
                     background: url(../../../assets/images/icon/back.svg) no-repeat center/contain;
                 }
                 .page-tit {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
                     font-size: 2rem;
                     font-weight: 700;
                     color: #292B2E;
@@ -51,16 +55,83 @@
             min-height: calc(100vh - 6.2rem);
             .inner {
                 .con-wrap {
-                    .waveform-wrap {
+                    margin-bottom: 7.7rem;
+                    .info-wrap {
+                        padding: 2rem 0 2.6rem;
+                        .recording-tit {
+                            font-size: 2.2rem;
+                            font-weight: 700;
+                            color: $gray950;
+                        }
+                        .datetime-wrap {
+                            padding-top: .2rem;
+                            span {
+                                font-weight: 500;
+                                color: $gray600;
+                            }
+                        }
+                    }
+                    .mic-wrap {
                         width: 100%;
                         height: 30rem;
                         border-radius: 1.6rem;
                         background: #F4F8F8;
                     }
+                    .recording-time {
+                        padding-top: 3rem;
+                        @include flexbox(row, center, center);
+                        strong {
+                            font-size: 3rem;
+                            font-weight: 500;
+                            color: $gray950;
+                        }
+                    }
+                    .control-wrap {
+                        padding: 2.2rem 0 3rem;
+                        @include flexbox(row, center, center);
+                        button {
+                            width: 7.6rem;
+                            height: 7.6rem;
+                            border-radius: 50%;
+                            display: none;
+                            &.on {
+                                display: block;
+                            }
+                            &.recording-btn {
+                                background: url(../../../assets/images/icon/mic.svg) no-repeat center/3.2rem $secondary500;
+                            }
+                            &.pause-btn {
+                                background: url(../../../assets/images/icon/pause.svg) no-repeat center/3.2rem $secondary500;
+                            }
+                        }
+                    }
+                }
+                .complete-wrap {
+                    position: fixed;
+                    bottom: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 100vw;
+                    max-width: 76.8rem;
+                    padding: 1.2rem 2rem;
+                    z-index: 15;
+                    border-top: 1px solid $gray100;
+                    background: $gray0;
+                    .complete-btn {
+                        width: 100%;
+                        height: 5.2rem;
+                        font-weight: 700;
+                        color: $gray0;
+                        border-radius: 1rem;
+                        background: $gray950;
+                    }
                 }
                 .bottom-sheet {
                     &.file-name {
                         .inner {
+                            .hd-wrap {
+                                border: none;
+                            }
                             .input-wrap {
                                 padding: 1rem 2rem 1.6rem;
                                 input {

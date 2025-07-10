@@ -1010,7 +1010,6 @@ span.tag.critical {
 }
 .wrapper.home header {
   width: 100%;
-  height: 6.2rem;
   position: sticky;
   top: 0;
   left: 0;
@@ -1021,6 +1020,7 @@ span.tag.critical {
 }
 .wrapper.home header > .inner {
   width: 100%;
+  height: 6.2rem;
   padding: 1.3rem 2rem;
   display: flex;
   flex-direction: row;

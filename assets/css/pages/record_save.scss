@@ -1,0 +1,163 @@
+@import "../common/common";
+
+@keyframes loading {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.wrapper {
+    &.record-save {
+        position: relative;
+        max-width: 76.8rem;
+        margin: 0 auto;
+        background: $gray0;
+        header {
+            width: 100%;
+            position: sticky;
+            top: 0;
+            left: 0;
+            border-bottom: 1px solid #F0F3F4;
+            background: $gray0;
+            backdrop-filter: blur(2px);
+            z-index: 10;
+            > .inner {
+                width: 100%;
+                height: 6.2rem;
+                padding: 1.3rem 2rem;
+                @include flexbox(row, space-between, center);
+                .page-tit {
+                    font-size: 2rem;
+                    font-weight: 700;
+                    color: #292B2E;
+                }
+                .close-btn {
+                    width: 2.4rem;
+                    height: 2.4rem;
+                    background: url(../../../assets/images/icon/close_g400.svg) no-repeat center/contain;
+                }
+            }
+        }
+        main {
+            width: calc(100% - 4rem);
+            margin: 0 auto;
+            min-height: calc(100vh - 6.2rem);
+            .inner {
+                .con-wrap {
+                    margin-bottom: 7.7rem;
+                    .info-message {
+                        text-align: center;
+                        padding: 8.8rem 0;
+                        strong {
+                            text-align: center;
+                            font-size: 2.2rem;
+                            font-weight: 700;
+                            color: $gray950;
+                        }
+                    }
+                    .status {
+                        .card {
+                            position: relative;
+                            padding: 1.6rem 1.4rem;
+                            border-radius: 1rem;
+                            border: 1px solid $gray100;
+                            @include flexbox(column, flex-start, flex-start);
+                            gap: .8rem;
+                            &:first-child {
+                                margin-bottom: .6rem;
+                            }
+                            &.loading {
+                                .tag {
+                                    color: $gray300;
+                                    background: $gray50;
+                                }
+                                .icon-wrap {
+                                    .icon {
+                                        background: url(../../../assets/images/icon/loading.svg) no-repeat center/contain;
+                                        animation: loading 1s linear infinite;
+                                    }
+                                }
+                                & + .card.loading {
+                                    .icon-wrap {
+                                        .icon {
+                                            background: transparent;
+                                        }
+                                    }
+                                }
+                            }
+                            &.complete {
+                                .tag {
+                                    color: $secondary500;
+                                    background: #E2F8EB;
+                                }
+                                .icon-wrap {
+                                    .icon {
+                                        border-radius: 50%;
+                                        background: url(../../../assets/images/icon/check.svg) no-repeat center/18px $secondary500;
+                                    }
+                                }
+                            }
+                            .tag {
+                                display: inline-block;
+                                padding: .15rem .5rem;
+                                font-size: 1.3rem;
+                                font-weight: 600;
+                                color: $gray300;
+                                background: $gray50;
+                                border-radius: .5rem;
+                            }
+                            p {
+                                font-weight: 500;
+                                color: $gray600;
+                            }
+                            .icon-wrap {
+                                position: absolute;
+                                top: 50%;
+                                right: 1.9rem;
+                                transform: translateY(-50%);
+                                width: 2rem;
+                                height: 2rem;
+                                .icon {
+                                    display: inline-block;
+                                    width: 2rem;
+                                    height: 2rem;
+                                }
+                            }
+                        }
+                    }
+                    .txt-info {
+                        padding: 2rem 0;
+                        p {
+                            text-align: center;
+                            font-weight: 500;
+                            color: $gray600;
+                        }
+                    }
+                }
+                .confirm-wrap {
+                    position: fixed;
+                    bottom: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 100vw;
+                    max-width: 76.8rem;
+                    padding: 1.2rem 2rem;
+                    z-index: 15;
+                    border-top: 1px solid $gray100;
+                    background: $gray0;
+                    .confirm-btn {
+                        width: 100%;
+                        height: 5.2rem;
+                        font-weight: 700;
+                        color: $gray0;
+                        border-radius: 1rem;
+                        background: $gray950;
+                    }
+                }
+            }
+        }
+    }
+}

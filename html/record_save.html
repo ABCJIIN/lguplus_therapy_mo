@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LG U+ 심리케어 서비스 - 녹음 완료</title>
+    <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon"/>
+    <!-- css -->
+    <link rel="stylesheet" href="../assets/css/reset.css">
+    <link rel="stylesheet" href="../assets/css/font.css">
+    <link rel="stylesheet" href="../assets/css/pages/record_save.css">
+    <!-- js -->
+    <script src="../assets/js/jquery-3.7.1.min.js"></script>
+    <script src="../assets/js/common.js"></script>
+</head>
+<body>
+    <div class="wrapper record-save">
+        <header>
+            <div class="inner">
+                <strong class="page-tit">녹음중</strong>
+                <button class="close-btn" type="button" aria-label="닫기"></button>
+            </div>
+        </header>
+        <main>
+            <div class="inner">
+                <div class="con-wrap">
+                    <div class="info-message">
+                        <strong>녹음이 저장되었어요.</strong>
+                    </div>
+                    <div class="status">
+                        <!-- 대기중 : class 없음 / 진행중 : loading / 대기중 : complete -->
+                        <div class="card complete">
+                            <span class="tag">Upload</span>
+                            <p>상담사 보조도구 서버로 업로드 중 입니다.</p>
+                            <div class="icon-wrap">
+                                <span class="icon"></span>
+                            </div>
+                        </div>
+                        <div class="card loading">
+                            <span class="tag">Conversion</span>
+                            <p>녹음파일을 STT로 전환하여 녹취록을<br>만들고 있습니다.</p>
+                            <div class="icon-wrap">
+                                <span class="icon"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="txt-info">
+                        <p>
+                            완료되면 [PC] 상담사 보조도구에서<br>
+                            녹음 파일을 불러와<br>
+                            AI 분석 확인과 상담일지를 작성 할 수 있어요.<br>
+                            <br>
+                            상담사 보조도구에서 확인해 보세요!
+                        </p>
+                    </div>
+                </div>
+                <div class="confirm-wrap">
+                    <button class="confirm-btn" type="button">확인</button>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

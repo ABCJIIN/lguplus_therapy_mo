@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <title>WaveSurfer 녹음</title>
+    <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon"/>
+    <script src="https://unpkg.com/wavesurfer.js@7"></script>
+    <script src="https://unpkg.com/wavesurfer.js@7/dist/plugins/record.min.js"></script>
+    <style>
+        button {
+        min-width: 5rem;
+        margin: 1rem 1rem 1rem 0;
+        }
+        .microphone-waveform {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-top: 1rem;
+        height: 56px;
+        overflow: hidden;
+        }
+        .recorded-audio-waveform {
+        margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+  <h1>Press Record to start recording 🎙️</h1>
+  <button id="record-btn">Record</button>
+
+  <div id="mic" class="microphone-waveform"></div>
+  <div id="recordings" class="recorded-audio-waveform"></div>
+
+  <script>
+    let isRecording = false;
+    let recordPlugin;
+    let micWaveSurfer;
+
+    const micContainer = document.getElementById("mic");
+    const recordingsContainer = document.getElementById("recordings");
+    const recordBtn = document.getElementById("record-btn");
+
+    // 마이크 파형용 wavesurfer 인스턴스
+    micWaveSurfer = WaveSurfer.create({
+      container: micContainer,
+      waveColor: "#1891a2",
+      height: 56,
+      barGap: 2,
+      barWidth: 3,
+      scrollParent: true,
+      minPxPerSec: 0.5,
+      sampleRate: 8000,
+    });
+
+    // record 플러그인 등록
+    recordPlugin = micWaveSurfer.registerPlugin(
+      WaveSurfer.Record.create()
+    );
+
+    // 녹음 종료 시
+    recordPlugin.on("record-end", (blob) => {
+      const recordedUrl = URL.createObjectURL(blob);
+
+      // 녹음 재생용 wavesurfer 생성
+      const playbackWave = WaveSurfer.create({
+        container: recordingsContainer,
+        waveColor: "#dff2f4",
+        progressColor: "#1891a2",
+        height: 56,
+        barGap: 2,
+        barWidth: 3,
+        url: recordedUrl,
+      });
+
+      // Play 버튼
+      const playBtn = document.createElement("button");
+      playBtn.textContent = "Play";
+      playBtn.onclick = () => playbackWave.playPause();
+      playbackWave.on("pause", () => (playBtn.textContent = "Play"));
+      playbackWave.on("play", () => (playBtn.textContent = "Pause"));
+      recordingsContainer.appendChild(playBtn);
+
+      // Download 링크
+      const downloadLink = document.createElement("a");
+      downloadLink.href = recordedUrl;
+      downloadLink.download = "recording." + (blob.type.split(";")[0].split("/")[1] || "webm");
+      downloadLink.textContent = "Download recording";
+      downloadLink.style.marginLeft = "1rem";
+      recordingsContainer.appendChild(downloadLink);
+    });
+
+    // Record 버튼 클릭 시
+    recordBtn.onclick = () => {
+      if (recordPlugin.isRecording()) {
+        recordPlugin.stopRecording();
+        isRecording = false;
+        recordBtn.textContent = "Record";
+      } else {
+        recordPlugin.startRecording().then(() => {
+          isRecording = true;
+          recordBtn.textContent = "Stop";
+        });
+      }
+    };
+  </script>
+</body>
+</html>

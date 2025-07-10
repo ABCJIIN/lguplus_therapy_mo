@@ -1,0 +1,369 @@
+@import "../common/common";
+
+@keyframes loading {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* 녹음 상세 */
+.wrapper {
+    &.record-detail {
+        position: relative;
+        max-width: 76.8rem;
+        margin: 0 auto;
+        background: $gray0;
+        header {
+            width: 100%;
+            position: sticky;
+            top: 0;
+            left: 0;
+            border-bottom: 1px solid #F0F3F4;
+            background: $gray0;
+            backdrop-filter: blur(2px);
+            z-index: 10;
+            > .inner {
+                position: relative;
+                width: 100%;
+                height: 6.2rem;
+                padding: 1.3rem 2rem;
+                @include flexbox(row, flex-start, center);
+                .back-btn {
+                    width: 2.4rem;
+                    height: 2.4rem;
+                    padding: 0;
+                    background: url(../../../assets/images/icon/back.svg) no-repeat center/contain;
+                }
+                .page-tit {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    font-size: 2rem;
+                    font-weight: 700;
+                    color: #292B2E;
+                }
+            }
+        }
+        main {
+            width: calc(100% - 4rem);
+            margin: 0 auto;
+            min-height: calc(100vh - 6.2rem);
+            .inner {
+                .con-wrap {
+                    .info-wrap {
+                        padding: 2rem 0 3rem;
+                        .top-wrap {
+                            margin-bottom: .2rem;
+                            @include flexbox(row, space-between, flex-start);
+                            .recording-tit {
+                                font-size: 2.2rem;
+                                font-weight: 700;
+                                color: $gray950;
+                            }
+                            .tag {
+                                display: inline-block;
+                                padding: .15rem .5rem;
+                                font-size: 1.3rem;
+                                font-weight: 600;
+                                color: $gray300;
+                                border-radius: .5rem;
+                                background: $gray50;
+                                &.fail {
+                                    color: $orange500;
+                                    background: $orange100;
+                                }
+                            }
+                        }
+                        .center-wrap {
+                            position: relative;
+                            margin-bottom: 1.6rem;
+                            @include flexbox(row, flex-start, center);
+                            gap: 2rem;
+                            .datetime-wrap {
+                                position: relative;
+                                padding-top: .2rem;
+                                &::after {
+                                    content: "";
+                                    position: absolute;
+                                    top: 50%;
+                                    right: -1rem;
+                                    transform: translateY(-50%);
+                                    width: 1px;
+                                    height: 1.1rem;
+                                    background: $gray300;
+                                }
+                                span {
+                                    font-weight: 500;
+                                    color: $gray600;
+                                }
+                            }
+                            .total {
+                                font-weight: 700;
+                                color: $gray400;
+                            }
+                        }
+                        .bottom-wrap {
+                            span {
+                                position: relative;
+                                font-size: 1.4rem;
+                                font-weight: 700;
+                                color: $gray400;
+                                @include flexbox(row, flex-start, center);
+                                gap: .8rem;
+                                &::before {
+                                    content: "";
+                                    display: inline-block;
+                                    width: 4px;
+                                    height: 4px;
+                                    border-radius: 50%;
+                                    background: $gray400;
+                                }
+                            }
+                        }
+                    }
+                    .client-card {
+                        height: 7.6rem;
+                        padding: 0 2rem;
+                        margin-bottom: 1.6rem;
+                        border-radius: 1.3rem;
+                        border: 1px solid $gray50;
+                        background: $gray0;
+                        box-shadow: 0px 1px 6px 0px rgba(195, 195, 195, 0.20);
+                        @include flexbox(row, flex-start, center);
+                        gap: 1.2rem;
+                        .condition {
+                            width: 5rem;
+                            height: 5rem;
+                            color: $orange500;
+                            font-weight: 700;
+                            border-radius: .6rem;
+                            @include flexbox(row, center, center);
+                            background: $orange100;
+                        }
+                        .details {
+                            > div {
+                                @include flexbox(row, flex-start, center);
+                                gap: 1.6rem;
+                                .client {
+                                    position: relative;
+                                    font-weight: 700;
+                                    &::after {
+                                        content: "";
+                                        position: absolute;
+                                        top: 50%;
+                                        right: -1rem;
+                                        transform: translateY(-50%);
+                                        width: .4rem;
+                                        height: .4rem;
+                                        border-radius: 50%;
+                                        background: $gray300;
+                                    }
+                                }
+                                .gender {
+                                    font-weight: 500;
+                                    color: $gray400;
+                                }
+                            }
+                            .phone {
+                                font-weight: 500;
+                                color: $gray400;
+                            }
+                        }
+                    }
+                    .waveform-wrap {
+                        position: relative;
+                        width: 100%;
+                        height: 16.7rem;
+                        border-radius: 1.6rem;
+                        background: #F4F8F8;
+                        overflow: hidden;
+                    }
+                    .recording-time {
+                        padding-top: 7rem;
+                        @include flexbox(row, center, center);
+                        strong {
+                            font-size: 3rem;
+                            font-weight: 500;
+                            color: $gray950;
+                        }
+                    }
+                    .control-wrap {
+                        padding: 2.2rem 0;
+                        @include flexbox(row, center, center);
+                        gap: 3rem;
+                        .skip-backward-btn {
+                            width: 4rem;
+                            height: 4rem;
+                            background: url(../../../assets/images/icon/skip_backward.svg) no-repeat center/contain;
+                        }
+                        .play-btn {
+                            width: 7.6rem;
+                            height: 7.6rem;
+                            border-radius: 50%;
+                            display: none;
+                            background: url(../../../assets/images/icon/play.svg) no-repeat center/3.2rem $secondary500;
+                            &.on {
+                                display: block;
+                            }
+                        }
+                        .pause-btn {
+                            width: 7.6rem;
+                            height: 7.6rem;
+                            border-radius: 50%;
+                            display: none;
+                            border: 2px solid $secondary500;
+                            background: url(../../../assets/images/icon/pause_s500.svg) no-repeat center/3.2rem $gray0;
+                            &.on {
+                                display: block;
+                            }
+                        }
+                        .skip-forward-btn {
+                            width: 4rem;
+                            height: 4rem;
+                            background: url(../../../assets/images/icon/skip_forward.svg) no-repeat center/contain;
+                        }
+                    }
+                }
+                .bottom-sheet {
+                    &.current-state {
+                        .inner {
+                            .hd-wrap {
+                                border: none;
+                            }
+                            .status {
+                                padding: 0 2rem;
+                                .card {
+                                    position: relative;
+                                    padding: 1.6rem 1.4rem;
+                                    border-radius: 1rem;
+                                    border: 1px solid $gray100;
+                                    @include flexbox(column, flex-start, flex-start);
+                                    gap: .8rem;
+                                    &:first-child {
+                                        margin-bottom: .6rem;
+                                    }
+                                    &.loading {
+                                        .tag {
+                                            color: $gray300;
+                                            background: $gray50;
+                                        }
+                                        .icon-wrap {
+                                            .icon {
+                                                background: url(../../../assets/images/icon/loading.svg) no-repeat center/contain;
+                                                animation: loading 1s linear infinite;
+                                            }
+                                        }
+                                        & + .card.loading {
+                                            .icon-wrap {
+                                                .icon {
+                                                    background: transparent;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    &.complete {
+                                        .tag {
+                                            color: $secondary500;
+                                            background: #E2F8EB;
+                                        }
+                                        .icon-wrap {
+                                            .icon {
+                                                border-radius: 50%;
+                                                background: url(../../../assets/images/icon/check.svg) no-repeat center/18px $secondary500;
+                                            }
+                                        }
+                                    }
+                                    .tag {
+                                        display: inline-block;
+                                        padding: .15rem .5rem;
+                                        font-size: 1.3rem;
+                                        font-weight: 600;
+                                        color: $gray300;
+                                        background: $gray50;
+                                        border-radius: .5rem;
+                                    }
+                                    p {
+                                        font-weight: 500;
+                                        color: $gray600;
+                                    }
+                                    .icon-wrap {
+                                        position: absolute;
+                                        top: 50%;
+                                        right: 1.9rem;
+                                        transform: translateY(-50%);
+                                        width: 2rem;
+                                        height: 2rem;
+                                        .icon {
+                                            display: inline-block;
+                                            width: 2rem;
+                                            height: 2rem;
+                                        }
+                                    }
+                                }
+                            }
+                            .txt-info {
+                                padding: 2rem 0 3rem;
+                                p {
+                                    text-align: center;
+                                    font-weight: 500;
+                                    color: $gray600;
+                                }
+                            }
+                        }
+                    }
+                    &.fail {
+                        .hd-wrap {
+                            border: none;
+                        }
+                        .fail-wrap {
+                            padding: 1rem 0 2rem;
+                            @include flexbox(column, center, center);
+                            img {
+                                width: 8.5rem;
+                                height: 7.9rem;
+                                object-fit: contain;
+                            }
+                            .fail-info {
+                                padding: 1rem 0 2rem;
+                                text-align: center;
+                                font-weight: 700;
+                            }
+                            .detail-info {
+                                text-align: center;
+                                font-size: 1.4rem;
+                                font-weight: 500;
+                                color: $gray300;
+                            }
+                        }
+                        .btn-wrap {
+                            border-top: 1px solid $gray100;
+                            padding: 1.2rem 2rem;
+                            .upload-btn {
+                                width: 100%;
+                                height: 5.2rem;
+                                color: $gray0;
+                                font-size: 1.6rem;
+                                font-weight: 700;
+                                border-radius: 1rem;
+                                background: $gray950;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+/* 0709 테스트 */
+#pause {
+    width: 6rem;
+    height: 6rem;
+    background: $secondary500;
+}
