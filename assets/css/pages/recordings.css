@@ -977,11 +977,9 @@ span.tag.critical {
   max-width: 76.8rem;
   margin: 0 auto;
   background: #FFFFFF;
-  background: pink;
 }
 .wrapper.recordings header {
   width: 100%;
-  height: 6.2rem;
   position: sticky;
   top: 0;
   left: 0;
@@ -991,7 +989,9 @@ span.tag.critical {
   z-index: 10;
 }
 .wrapper.recordings header > .inner {
+  position: relative;
   width: 100%;
+  height: 6.2rem;
   padding: 1.3rem 2rem;
   display: flex;
   flex-direction: row;
@@ -1005,6 +1005,10 @@ span.tag.critical {
   background: url(../../../assets/images/icon/back.svg) no-repeat center/contain;
 }
 .wrapper.recordings header > .inner .page-tit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 2rem;
   font-weight: 700;
   color: #292B2E;
@@ -1024,11 +1028,86 @@ span.tag.critical {
   margin: 0 auto;
   min-height: calc(100vh - 6.2rem);
 }
-.wrapper.recordings main .inner .con-wrap .waveform-wrap {
+.wrapper.recordings main .inner .con-wrap {
+  margin-bottom: 7.7rem;
+}
+.wrapper.recordings main .inner .con-wrap .info-wrap {
+  padding: 2rem 0 2.6rem;
+}
+.wrapper.recordings main .inner .con-wrap .info-wrap .recording-tit {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #1C1D1E;
+}
+.wrapper.recordings main .inner .con-wrap .info-wrap .datetime-wrap {
+  padding-top: 0.2rem;
+}
+.wrapper.recordings main .inner .con-wrap .info-wrap .datetime-wrap span {
+  font-weight: 500;
+  color: #5A626A;
+}
+.wrapper.recordings main .inner .con-wrap .mic-wrap {
   width: 100%;
   height: 30rem;
   border-radius: 1.6rem;
   background: #F4F8F8;
+}
+.wrapper.recordings main .inner .con-wrap .recording-time {
+  padding-top: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.wrapper.recordings main .inner .con-wrap .recording-time strong {
+  font-size: 3rem;
+  font-weight: 500;
+  color: #1C1D1E;
+}
+.wrapper.recordings main .inner .con-wrap .control-wrap {
+  padding: 2.2rem 0 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.wrapper.recordings main .inner .con-wrap .control-wrap button {
+  width: 7.6rem;
+  height: 7.6rem;
+  border-radius: 50%;
+  display: none;
+}
+.wrapper.recordings main .inner .con-wrap .control-wrap button.on {
+  display: block;
+}
+.wrapper.recordings main .inner .con-wrap .control-wrap button.recording-btn {
+  background: url(../../../assets/images/icon/mic.svg) no-repeat center/3.2rem #32D074;
+}
+.wrapper.recordings main .inner .con-wrap .control-wrap button.pause-btn {
+  background: url(../../../assets/images/icon/pause.svg) no-repeat center/3.2rem #32D074;
+}
+.wrapper.recordings main .inner .complete-wrap {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  max-width: 76.8rem;
+  padding: 1.2rem 2rem;
+  z-index: 15;
+  border-top: 1px solid #DCE4E7;
+  background: #FFFFFF;
+}
+.wrapper.recordings main .inner .complete-wrap .complete-btn {
+  width: 100%;
+  height: 5.2rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  border-radius: 1rem;
+  background: #1C1D1E;
+}
+.wrapper.recordings main .inner .bottom-sheet.file-name .inner .hd-wrap {
+  border: none;
 }
 .wrapper.recordings main .inner .bottom-sheet.file-name .inner .input-wrap {
   padding: 1rem 2rem 1.6rem;

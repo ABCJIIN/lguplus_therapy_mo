@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LG U+ 심리케어 서비스 - 녹음중</title>
+    <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon"/>
+    <!-- css -->
+    <link rel="stylesheet" href="../assets/css/reset.css">
+    <link rel="stylesheet" href="../assets/css/font.css">
+    <link rel="stylesheet" href="../assets/css/pages/record_detail.css">
+    <!-- js -->
+    <script src="../assets/js/jquery-3.7.1.min.js"></script>
+    <script src="../assets/js/common.js"></script>
+
+    <!-- 오디오 파형 라이브러리 -->
+    <script src="https://unpkg.com/wavesurfer.js@7"></script>
+</head>
+<body>
+    <div class="wrapper record-detail">
+        <header>
+            <div class="inner">
+                <button class="back-btn" type="button" aria-label="뒤로가기"></button>
+                <strong class="page-tit">녹음 상세</strong>
+            </div>
+        </header>
+        <main>
+            <div class="inner">
+                <div class="con-wrap">
+                    <div class="info-wrap">
+                        <div class="top-wrap">
+                            <strong class="recording-tit">상담 녹음 파일명</strong>
+                            <!-- 업로드 실패 : fail 추가 -->
+                            <span class="tag">변환 중</span>
+                        </div>
+                        <div class="center-wrap">
+                            <p class="datetime-wrap">
+                                <span class="date">2025.04.25(금)</span> <span class="time">오전 10:11</span>
+                            </p>
+                            <span class="total">34:45</span>
+                        </div>
+                        <div class="bottom-wrap">
+                            <span>4회기</span>
+                        </div>
+                    </div>
+                    <div class="client-card">
+                        <span class="condition">위험</span>
+                        <div class="details">
+                            <div>
+                                <span class="client">김*음(앤드류)</span>
+                                <span class="gender">남자</span>
+                            </div>
+                            <span class="phone">010-1234-1234</span>
+                        </div>
+                    </div>
+                    <div class="waveform-wrap">
+                        <div id="waveform"></div>
+                    </div>
+                    <div class="recording-time">
+                        <strong>00:00.00</strong>
+                    </div>
+                    <div class="control-wrap">
+                        <button class="skip-backward-btn" type="button" aria-label="10초 뒤로가기"></button>
+                        <button class="play-btn on" type="button" aria-label="재생"></button>
+                        <button class="pause-btn" type="button" aria-label="정지"></button>
+                        <button class="skip-forward-btn" type="button" aria-label="10초 앞으로가기"></button>
+                    </div>
+                </div>
+                <!-- 작업 상태 on class 추가 -->
+                <div class="bottom-sheet current-state">
+                    <div class="inner">
+                        <div class="hd-wrap">
+                            <strong>작업 상태</strong>
+                            <button class="close-btn" type="button" aria-label="닫기"></button>
+                        </div>
+                        <div class="status">
+                            <!-- 대기중 : class 없음 / 진행중 : loading / 대기중 : complete -->
+                            <div class="card complete">
+                                <span class="tag">Upload</span>
+                                <p>상담사 보조도구 서버로 업로드 중 입니다.</p>
+                                <div class="icon-wrap">
+                                    <span class="icon"></span>
+                                </div>
+                            </div>
+                            <div class="card loading">
+                                <span class="tag">Conversion</span>
+                                <p>녹음파일을 STT로 전환하여 녹취록을<br>만들고 있습니다.</p>
+                                <div class="icon-wrap">
+                                    <span class="icon"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="txt-info">
+                            <p>
+                                완료되면 [PC] 상담사 보조도구에서<br>
+                                녹음 파일을 불러와<br>
+                                AI 분석 확인과 상담일지를 작성 할 수 있어요.<br>
+                                <br>
+                                상담사 보조도구에서 확인해 보세요!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 작업 상태 : 실패 -->
+                <div class="bottom-sheet fail">
+                    <div class="inner">
+                        <div class="hd-wrap">
+                            <strong>작업 상태</strong>
+                            <button class="close-btn" type="button" aria-label="닫기"></button>
+                        </div>
+                        <div class="fail-wrap">
+                            <img src="../assets/images/common/error_face.svg" alt="error">
+                            <p class="fail-info">업로드를 실패하였습니다.<br>다시 시도해 주세요.</p>
+                            <p class="detail-info">계속해서 실패하는 경우, 녹음 파일을 PC로 옮겨<br>직접 업로드 할 수 있습니다. *내담자 관리 > 상담 관리</p>
+                        </div>
+                        <div class="btn-wrap">
+                            <button class="upload-btn" type="button">업로드하기</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        const wavesurfer = WaveSurfer.create({
+            container: '#waveform',
+            height: 167,
+            waveColor: '#A7B5BC',
+            progressColor: '#A7B5BC',
+            cursorColor: '#32D074',
+            cursorWidth: 1,
+            url: '../assets/audio/test.mp3',
+            barWidth: 3,
+            barMinHeight: 3,
+            barGap: 2,
+            barRadius: 2,
+            minPxPerSec: 50,
+            dragToSeek: true,
+            hideScrollbar: true,
+            autoplay: false,
+            autoScroll: true,
+            autoCenter: true,
+        });
+
+        function formatTime(time) {
+            const minutes = Math.floor(time / 60);
+            const seconds = Math.floor(time % 60);
+            const milliseconds = Math.floor((time % 1) * 100);
+            return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${milliseconds.toString().padStart(2, '0')}`;
+        }
+
+        function updateTimeDisplay(time) {
+            $(".recording-time strong").text(formatTime(time));
+        }
+
+        // 재생 버튼
+        $(".play-btn").on("click", function(){
+            wavesurfer.play();
+            $(this).removeClass("on");
+            $(this).siblings(".pause-btn").addClass("on");
+        });
+
+        // 일시정지 버튼 (재생 위치 유지)
+        $(".pause-btn").on("click", function(){
+            wavesurfer.pause();
+            $(this).removeClass("on");
+            $(this).siblings(".play-btn").addClass("on");
+        });
+
+        // 10초 뒤로 가기
+        $(".skip-backward-btn").on("click", function(){
+            const duration = wavesurfer.getDuration();
+            const current = wavesurfer.getCurrentTime();
+            const target = Math.max(current - 10, 0);
+            wavesurfer.seekTo(target / duration);
+            updateTimeDisplay(target); // 위치 이동 후 시간 수동 업데이트
+        });
+
+        // 10초 앞으로 가기
+        $(".skip-forward-btn").on("click", function(){
+            const duration = wavesurfer.getDuration();
+            const current = wavesurfer.getCurrentTime();
+            const target = Math.min(current + 10, duration);
+            wavesurfer.seekTo(target / duration);
+            updateTimeDisplay(target); // 위치 이동 후 시간 수동 업데이트
+        });
+
+        // 재생 중일 때는 실시간 시간 표시
+        wavesurfer.on("audioprocess", function(time){
+            updateTimeDisplay(time);
+        });
+
+        // 재생이 끝났을 때도 시간 표시를 종료 시점으로
+        wavesurfer.on("finish", function(){
+            updateTimeDisplay(wavesurfer.getDuration());
+        });
+
+        // 커서 이동 시 (정지 상태 포함) 시간 업데이트
+        document.getElementById('waveform').addEventListener('mouseup', function () {
+            // 마우스 업 후 약간의 지연을 두고 시간 업데이트 (WaveSurfer 내부 업데이트 이후 실행되게 함)
+            setTimeout(() => {
+                const time = wavesurfer.getCurrentTime();
+                updateTimeDisplay(time);
+            }, 50);
+        });
+
+
+    </script>
+</body>
+</html>

@@ -67,4 +67,26 @@ $(function () {
         const hasChecked = $checkboxes.is(":checked");
         $deleteBtn.prop("disabled", !hasChecked);
     });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });
