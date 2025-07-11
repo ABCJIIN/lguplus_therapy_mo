@@ -347,116 +347,91 @@ button:disabled {
   background: #EFF2F3;
 }
 
-/* 녹음중 */
-.wrapper.recordings {
+/* 스타일 가이드 */
+.style-guide {
   position: relative;
-  max-width: 76.8rem;
+  width: 100%;
+  min-height: 100vh;
+  background: #ffffff;
+}
+.style-guide > .con-box {
+  width: calc(100% - 4rem);
+  max-width: 1100px;
+  padding: 4rem 0;
   margin: 0 auto;
-  background: #FFFFFF;
-}
-.wrapper.recordings header > .inner .page-tit {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.wrapper.recordings header > .inner .help-btn {
-  height: 3.2rem;
-  padding: 0 0.9rem 0 2.7rem;
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #FF0606;
-  border: 1px solid #FF9F9F;
-  border-radius: 3rem;
-  background: url(../../../assets/images/icon/phone.svg) no-repeat center left 9px/16px #FFFFFF;
-}
-.wrapper.recordings main .inner .con-wrap {
-  margin-bottom: 7.7rem;
-}
-.wrapper.recordings main .inner .con-wrap .info-wrap {
-  padding: 2rem 0 2.6rem;
-}
-.wrapper.recordings main .inner .con-wrap .info-wrap .recording-tit {
-  font-size: 2.2rem;
-  font-weight: 700;
-  color: #1C1D1E;
-}
-.wrapper.recordings main .inner .con-wrap .info-wrap .datetime-wrap {
-  padding-top: 0.2rem;
-}
-.wrapper.recordings main .inner .con-wrap .info-wrap .datetime-wrap span {
-  font-weight: 500;
-  color: #5A626A;
-}
-.wrapper.recordings main .inner .con-wrap .waveform-wrap {
   position: relative;
+}
+.style-guide > .con-box > h3 {
   width: 100%;
-  height: 30rem;
-  border-radius: 1.6rem;
-  background: #F4F8F8;
-}
-.wrapper.recordings main .inner .con-wrap .recording-time {
-  padding-top: 3rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-.wrapper.recordings main .inner .con-wrap .recording-time strong {
-  font-size: 3rem;
-  font-weight: 500;
-  color: #1C1D1E;
-}
-.wrapper.recordings main .inner .con-wrap .control-wrap {
-  padding: 2.2rem 0 3rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-.wrapper.recordings main .inner .con-wrap .control-wrap button {
-  width: 7.6rem;
-  height: 7.6rem;
-  border-radius: 50%;
-  display: none;
-}
-.wrapper.recordings main .inner .con-wrap .control-wrap button.on {
   display: block;
+  padding: 15px;
+  color: #303957;
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 4px;
+  background: #F1F1F5;
 }
-.wrapper.recordings main .inner .con-wrap .control-wrap button.record-btn {
-  background: url(../../../assets/images/icon/mic.svg) no-repeat center/3.2rem #32D074;
+.style-guide > .con-box > div {
+  padding: 2rem;
+  margin-top: 4rem;
+  border-radius: 4px;
+  border: 3px solid #E4E4EB;
 }
-.wrapper.recordings main .inner .con-wrap .control-wrap button.pause-btn {
-  background: url(../../../assets/images/icon/pause.svg) no-repeat center/3.2rem #32D074;
+.style-guide > .con-box .tab-area {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
 }
-.wrapper.recordings main .inner .complete-wrap {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
-  max-width: 76.8rem;
-  padding: 1.2rem 2rem;
-  z-index: 15;
-  border-top: 1px solid #DCE4E7;
-  background: #FFFFFF;
-}
-.wrapper.recordings main .inner .complete-wrap .complete-btn {
+.style-guide > .con-box .tab-area > li {
   width: 100%;
 }
-.wrapper.recordings main .inner .bottom-sheet.file-name .inner .hd-wrap {
-  border: none;
-}
-.wrapper.recordings main .inner .bottom-sheet.file-name .inner .input-wrap {
-  padding: 1rem 2rem 1.6rem;
-}
-.wrapper.recordings main .inner .bottom-sheet.file-name .inner .input-wrap input {
-  height: 5.6rem;
-}
-.wrapper.recordings main .inner .bottom-sheet.file-name .inner .btn-wrap {
-  border-top: 1px solid #DCE4E7;
-  padding: 1.2rem 2rem;
-}
-.wrapper.recordings main .inner .bottom-sheet.file-name .inner .btn-wrap .save-btn {
+.style-guide > .con-box .tab-area > li > a {
+  display: block;
   width: 100%;
+  height: 100%;
+  padding: 15px 0;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 30px;
+  text-align: center;
+  background: #E8F3FF;
+  color: #303957;
+}
+.style-guide > .con-box .module-wrap {
+  width: 100%;
+}
+.style-guide > .con-box .module-wrap > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 5px;
+}
+.style-guide > .con-box .module-wrap > div > strong {
+  font-size: 25px;
+  font-weight: 500;
+  color: #303957;
+}
+.style-guide > .con-box .module-wrap > div > p {
+  font-size: 16px;
+  color: #D92741;
+}
+.style-guide > .con-box .module-wrap > ul {
+  width: 100%;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.style-guide > .con-box .module-wrap > ul > li {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+}
+.style-guide > .con-box .module-wrap > ul > li.flex-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 }

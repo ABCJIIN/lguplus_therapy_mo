@@ -15,7 +15,7 @@
 
     <!-- 오디오 파형 라이브러리 -->
     <script src="https://unpkg.com/wavesurfer.js@7"></script>
-    <script src="https://unpkg.com/wavesurfer.js@7/dist/plugins/regions.min.js"></script>
+    <script src="https://unpkg.com/wavesurfer.js@7/dist/plugins/record.min.js"></script>
 </head>
 <body>
     <div class="wrapper recordings">
@@ -42,7 +42,7 @@
                         <strong>00:00.00</strong>
                     </div>
                     <div class="control-wrap">
-                        <button class="recording-btn on" type="button" aria-label="녹음"></button>
+                        <button class="record-btn on" type="button" aria-label="녹음"></button>
                         <button class="pause-btn" type="button" aria-label="정지"></button>
                     </div>
                 </div>
@@ -69,31 +69,100 @@
         </main>
     </div>
     <script>
-        const wavesurfer = WaveSurfer.create({
-            container: '#waveform',
+        let isRecording = false;
+        let recordPlugin;
+        let micWaveSurfer;
+        let timerInterval = null;
+        let startTime = 0;
+        let totalRecordedTime = 0; // 누적 녹음 시간
+        let chunks = [];
+
+        const micContainer = document.getElementById("waveform");
+        const recordBtn = document.querySelector(".record-btn");
+        const stopBtn = document.querySelector(".pause-btn");
+        const timeDisplay = document.querySelector(".recording-time strong");
+
+        // 마이크 파형용 wavesurfer 인스턴스
+        micWaveSurfer = WaveSurfer.create({
+            container: micContainer,
             height: 300,
-            waveColor: '#A7B5BC',
+            waveColor: "#A7B5BC",
             progressColor: '#A7B5BC',
             cursorColor: '#32D074',
             cursorWidth: 1,
-            url: '../assets/audio/test.mp3',
-
-            // Set a bar width
             barWidth: 3,
             barMinHeight: 3,
-            // Optionally, specify the spacing between bars
             barGap: 2,
-            // And the bar radius
             barRadius: 2,
-            // 커서 중앙 정렬?
+            scrollParent: true,
+            minPxPerSec: 50,
+            dragToSeek: true,
+            hideScrollbar: true,
+            autoplay: false,
             autoScroll: true,
-            autoCenter: true,
-            
+            // autoCenter: true, 녹음 중엔 작동안함
+            sampleRate: 44100,
         });
 
-        wavesurfer.on('click', () => {
-            wavesurfer.play()
+        // record 플러그인 등록
+        recordPlugin = micWaveSurfer.registerPlugin(
+            WaveSurfer.Record.create()
+        );
+
+        // 녹음 종료 시 blob 수집
+        recordPlugin.on("record-end", (blob) => {
+            chunks.push(blob); // 이어붙이기 위해 저장
+            console.log("녹음 chunk 저장됨", blob);
         });
+
+        // 초기 상태: Stop, Save 버튼 숨김
+        stopBtn.classList.remove("on");
+        // if (saveBtn) saveBtn.classList.remove("on");
+
+        // 시간 포맷
+        function formatTime(ms) {
+            const totalSeconds = Math.floor(ms / 1000);
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+            const hundredths = Math.floor((ms % 1000) / 10);
+            return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}.${String(hundredths).padStart(2, '0')}`;
+        }
+
+        // Record 버튼 클릭 시
+        recordBtn.onclick = () => {
+            recordPlugin.startRecording().then(() => {
+                console.log("🔴 녹음 시작");
+
+                isRecording = true;
+                recordBtn.classList.remove("on");
+                stopBtn.classList.add("on");
+
+                // 이어서 시간 계산
+                startTime = Date.now() - totalRecordedTime;
+
+                // 타이머 시작
+                timerInterval = setInterval(() => {
+                    const elapsed = Date.now() - startTime;
+                    timeDisplay.textContent = formatTime(elapsed);
+                }, 30);
+            });
+        };
+
+        // Stop 버튼 클릭 시
+        stopBtn.onclick = () => {
+            recordPlugin.stopRecording();
+            isRecording = false;
+            console.log("⏹️ 녹음 정지");
+
+            stopBtn.classList.remove("on");
+            recordBtn.classList.add("on");
+
+            // 누적 시간 저장
+            totalRecordedTime = Date.now() - startTime;
+
+            // 타이머 정지 (시간은 유지)
+            clearInterval(timerInterval);
+        };
     </script>
 </body>
 </html>

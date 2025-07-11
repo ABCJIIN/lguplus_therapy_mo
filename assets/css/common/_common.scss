@@ -4,7 +4,6 @@ $pretendard: 'Pretendard';
 /* 컬러 */
 $black: #000;
 $white: #fff;
-$bg: #F7F9F9;
 $error: #FF0606;
 
 $gray950 : #1C1D1E;
@@ -134,6 +133,53 @@ body {
     }
 }
 
+/* 로그인을 제외한 전체 공통 레이아웃 */
+.wrapper {
+    &:not(.login) {
+        main {
+            width: calc(100% - 4rem);
+            margin: 0 auto;
+            min-height: calc(100vh - 6.2rem);
+        }
+    }
+}
+
+/* header */
+header {
+    width: 100%;
+    height: 6.2rem;
+    position: sticky;
+    top: 0;
+    left: 0;
+    border-bottom: 1px solid #F0F3F4;
+    background: $gray0;
+    backdrop-filter: blur(2px);
+    z-index: 10;
+    > .inner {
+        position: relative;
+        width: 100%;
+        height: 6.2rem;
+        padding: 1.3rem 2rem;
+        @include flexbox(row, space-between, center);
+        .back-btn {
+            width: 2.4rem;
+            height: 2.4rem;
+            padding: 0;
+            background: url(../../../assets/images/icon/back.svg) no-repeat center/contain;
+        }
+        .page-tit {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #292B2E;
+        }
+        .close-btn {
+            width: 2.4rem;
+            height: 2.4rem;
+            background: url(../../../assets/images/icon/close_g400.svg) no-repeat center/contain;
+        }
+    }
+}
+
 /* 요소 숨기기 */
 .hide {
     position: absolute; 
@@ -147,184 +193,20 @@ body {
 
 /* 버튼 */
 button {
+    height: 5.2rem;
     font-family: $pretendard;
     font-size: 1.6rem;
     font-weight: 700;
-    border-radius: .8rem;
-    &.h36 {
-        height: 3.6rem;
-    }
-    &.h40 {
-        height: 4rem;
-    }
-    &.h44 {
-        height: 4.4rem;
-    }
-    &.h48 {
-        height: 4.8rem;
-    }
-    &.type01 {
-        padding: 0 .8rem;
-        border: 1px solid $gray100;
-        background: url(/assets/images/icon/ixi.svg) no-repeat center left 8px/20px $gray0;
-        transition: border .25s;
-        span {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-left: 2.4rem;
-            background: linear-gradient(180deg, #8B24FF 0%, #FE58FF 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        &:hover {
-            border: 1px solid #B739FF;
-        }
-    }
-    &.type02 {
-        width: 3.6rem;
-        height: 3.6rem;
-        border: 1px solid $gray200;
-        background: url(/assets/images/icon/file_upload.svg) no-repeat center $gray0;
-    }
-    &.type03 {
-        padding: 0 4rem 0 1.4rem;
-        color: $gray800;
-        border: 1px solid $gray200;
-        background: url(/assets/images/icon/file_upload.svg) no-repeat center right 1.2rem/24px $gray0;
-        transition: border .25s;
-        &:hover {
-            border: 1px solid $gray400;
-        }
-    }
-    &.type04 {
-        width: 15.3rem;
-        height: 5.2rem;
-        color: $gray800;
-        border: 1px solid $gray200;
-        background: $gray0;
-        transition: border .25s;
-        &:hover {
-            border: 1px solid $gray400;
-        }
-    }
-    &.type05 {
-        height: 4rem;
-        padding: 0 1.4rem;
-        color: $gray0;
-        background: $gray950;
-        transition: background .25s;
-        &:hover {
-            background: $gray700;
-        }
-    }
-    &.type06 {
-        width: 16.7rem;
-        height: 4.4rem;
-        color: $gray950;
-        background: $gray50;
-        transition: background .25s;
-        &:hover {
-            background: rgba(239, 242, 243, 0.50);
-        }
-        &.black {
-            color: $gray0;
-            background: $gray950;
-            transition: background .25s;
-            &:hover {
-                background: $gray700;
-            }
-        }
-        &:disabled {
-            color: $gray200;
-            background: rgba(239, 242, 243, 0.70);
-            cursor: default;
-        }
-    }
-    &.type07 {
-        width: 10.4rem;
-        height: 4.8rem;
-        color: $gray950;
-        background: $gray50;
-        transition: background .25s;
-        &:hover {
-            background: rgba(239, 242, 243, 0.50);
-        }
-        &:disabled {
-            color: $gray200;
-            background: rgba(239, 242, 243, 0.70);
-            cursor: default;
-        }
-        &.black {
-            color: $gray0;
-            background: $gray950;
-            &:hover {
-                background: $gray700;
-            }
-            &:disabled {
-                background: $gray200;
-                cursor: default;
-            }
-        }
-    }
-    &.type08 {
-        width: 36.2rem;
-        height: 5.2rem;
-        color: $gray950;
-        border-radius: 1rem;
-        background: $gray50;
-        transition: background .25s;
-        &:hover {
-            background: rgba(239, 242, 243, 0.50);
-        }
-        &.black {
-            color: $gray0;
-            background: $gray950;
-            &:hover {
-                background: $gray700;
-            }
-        }
-    }
-    &.type09 {
-        // width: 15.3rem;
-        padding: 0 2rem;
-        height: 5.2rem;
-        color: $gray0;
-        background: $secondary500;
-        transition: background .25s;
-        &:hover {
-            background: $secondary300;
-        }
-    }
-    &.type10 {
-        width: 100%;
-        height: 5.2rem;
-        color: $gray0;
-        background: $gray950;
-        transition: background .25s;
-        &:disabled {
-            background: $gray200;
-            cursor: default;
-            &:hover {
-                background: $gray200;
-            }
-        }
-        &:hover {
-            background: $gray700;
-        }
-    }
-    &.type11 {
-        padding: 0 3.8rem 0 1.4rem;
-        color: $gray0;
-        background: url(../../../assets/images/icon/plus_wt.svg) no-repeat center right 1.2rem/2.4rem $gray950;
-        transition: background .25s;
-        &:hover {
-            background-color: $gray700;
-        }
+    color: $gray0;
+    background: $gray950;
+    border-radius: 1rem;
+    &:disabled {
+        background: $gray200;
+        cursor: default;
     }
 }
 
-/* 텍스트, 패스워드, 라디오, 체크박스 */
+/* 텍스트, 패스워드, 체크박스 */
 .input-wrap {
     position: relative;
     input[type="text"], input[type="password"], input[type="number"] {
@@ -345,72 +227,8 @@ button {
             border: 1px solid $gray400;
         }
     }
-    &.dim {
-        input[type="text"], input[type="password"], input[type="number"] {
-            border: 1px solid $gray100;
-            background: rgba(243, 243, 243, 0.30);
-            &:focus {
-                border: 1px solid $gray100;
-                background: $gray0;
-            }
-            &.has-value {
-                border: 1px solid $gray100;
-                background: $gray0;
-            }
-        }
-    }
-    &.search {
-        input[type="text"], input[type="password"], input[type="number"] {
-            padding: 0 3.8rem 0 1.4rem;
-        }
-        .search-btn {
-            top: 50%;
-            right: 1.4rem;
-            transform: translateY(-50%);
-            position: absolute;
-            width: 2.4rem;
-            height: 2.4rem;
-            border: none;
-            background: url(../../../assets/images/icon/search.svg) no-repeat center/contain;
-        }
-        &.word-move {
-            input[type="text"], input[type="password"] {
-                padding: 0 14.1rem 0 1.4rem;
-            }
-            .move-helper {
-                position: absolute;
-                top: 50%;
-                right: 4.8rem;
-                transform: translateY(-50%);
-                @include flexbox(row, center, center);
-                gap: .8rem;
-                p {
-                    font-size: 1.4rem;
-                    font-weight: 500;
-                    color: $gray400;
-                }
-                .btn-wrap {
-                    @include flexbox(row, center, center);
-                    button {
-                        width: 2.4rem;
-                        height: 2.4rem;
-                        border: 1px solid $gray200;
-                        &.up-btn {
-                            border-radius: .4rem 0 0 .4rem;
-                            background: url(../../../assets/images/icon/arrow_up.svg) no-repeat center/2rem $gray0;
-                        }
-                        &.down-btn {
-                            border-radius: 0 .4rem .4rem 0;
-                            background: url(../../../assets/images/icon/arrow_down.svg) no-repeat center/2rem $gray0;
-                            border-left: 0;
-                        }
-                    }
-                }
-            }
-        }
-    }
-    &.radio, &.checkbox{
-        input[type="radio"], input[type="checkbox"]{
+    &.checkbox{
+        input[type="checkbox"]{
             overflow: hidden;
             position: absolute;
             clip: rect(0, 0, 0, 0);
@@ -437,87 +255,22 @@ button {
                     width: 2rem;
                     height: 2rem;
                     transform: translateY(-50%);
-                    background: $gray0;
+                    border-radius: 3px;
                     border: 2px solid $gray200;
-                }
-            }
-            &:focus-visible {
-                + label::before {
-                    outline: 2px solid $black;
-                    outline-offset: 2px;
-                }
-            }
-        }
-    }
-    &.radio{
-        input[type="radio"]{
-            + label{
-                &::before, &::after{border-radius: 50%;}
-                &::before{left: 0;}
-                &::after{
-                    width: 1rem;
-                    height: 1rem;
-                    left: .5rem;
-                    transform: translateY(-50%) scale(0);
-                    background: $secondary500;
-                }
-            }
-            &:checked{
-                + label{
-                    &::before{border-color: $secondary500;}
-                    &::after{transform: translateY(-50%) scale(1);}
-                }
-            }
-            &:disabled {
-                + label {
-                    &::before{
-                        border-color: $gray200;
-                        background: $gray50;
-                    }
-                    &::after{background:$gray200;}
-                }
-            }
-        }
-    }
-    /* 심리 검사 라디오 버튼 */
-    &.radio {
-        &.type01 {
-            input[type="radio"]{
-                + label{
-                    width: 6rem;
-                    height: 6rem;
-                    padding: 0;
-                    font-size: 2rem;
-                    font-weight: 500;
-                    color: #5A5C63;
-                    border: 2px solid #D9DEE2;
-                    border-radius: 50%;
                     background: $gray0;
-                    @include flexbox(row, center, center);
-                    &::before, &::after{
-                        content: none;
-                    }
                 }
-                &:checked{
-                    + label{
-                        color: $secondary600;
-                        border-color: $secondary500;
-                        background: rgba(50, 208, 116, 0.1);
-                    }
-                }
-            }
-        }
-    }
-    &.checkbox{        
-        input[type="checkbox"]{
-            + label{
-                &::before{border-radius: 3px;}
                 &::after{
                     width: 2rem;
                     height: 2rem;
                     border-radius: 3px;
                     opacity: 0;
                     background: url(../../../assets/images/icon/check.svg) no-repeat center/1.7rem $secondary500;
+                }
+            }
+            &:focus-visible {
+                + label::before {
+                    outline: 2px solid $black;
+                    outline-offset: 2px;
                 }
             }
             &:checked{
@@ -542,442 +295,21 @@ button {
     }
 }
 
-.input-cont {
-    @include flexbox(row, flex-start, center);
-    gap: .8rem;
-    width: 100%;
-    height: 100%;
-    /* 이메일 폼 */
-    &.email {
-        .input-wrap {
-            height: 5.2rem;
-            &:first-of-type {
-                width: 33.8rem;
-            }
-            &:nth-of-type(2){
-                width: 17.5rem;
-            }
-            > span {
-                font-size: 1.8rem;
-                font-weight: 500;
-                color: $gray800;
-            }
-            input {
-                width: 100%;
-                height: 100%;
-            }
-        }
-    }
-    /* 보호자 정보 추가 */
-    &.input-add {
-        .input-wrap {
-            height: 5.2rem;
-            &:nth-of-type(2) {
-                width: 17.7rem;
-            }
-            &:nth-of-type(3) {
-                width: 29.8rem;
-            }
-            input {
-                width: 100%;
-                height: 100%;
-            }
-        }
-        .remove-btn {
-            width: 5.2rem;
-            height: 5.2rem;
-            border-radius: .8rem;
-            border: 1px solid $gray100;
-            background: url(../../../assets/images/icon/minus.svg) no-repeat center/2.4rem $gray0;
-            cursor: pointer;
-        }
-        & + .add-btn {
-            width: 100%;
-            height: 5.2rem;
-            border-radius: .6rem;
-            background: rgba(239, 242, 243, 0.50);
-            span {
-                padding-left: 2.8rem;
-                position: relative;
-                font-weight: 700;
-                color: $gray400;
-                background: url(../../../assets/images/icon/plus.svg) no-repeat center left/24px;
-            }
-        }
-    }
-}
-
-/* 라디오 토글 */
-.raido-toggle {
-    position: relative;
-    @include flexbox(row, center, center);
-    gap: .8rem;
-    .toggle-btn {
-        input[type="radio"] {
-            overflow: hidden;
-            position: absolute;
-            clip: rect(0, 0, 0, 0);
-            clip-path: polygon(0 0, 0 0, 0 0);
-            width: 1px;
-            height: 1px;
-            margin: -1px;
-            + label {
-                display: inline-block;
-                width: 8.6rem;
-                height: 5.2rem;
-                font-size: 1.8rem;
-                font-weight: 600;
-                color: $gray600;
-                border-radius: 1rem;
-                @include flexbox(row, center, center);
-                background: $gray50;
-                cursor: pointer;
-                transition: all .25s;
-            }
-            &:checked {
-                + label {
-                    color: $gray0;
-                    background: $secondary500;
-                }
-            }
-        }
-    }
-}
-
-/* 토글(스위치) 버튼 */
-.switch-wrap {
-    label {
-        display: inline-flex;
-        align-items: center;
-        gap: .6rem;
-        cursor: pointer;
-        input[type="checkbox"] {
-            appearance: none;
-            position: relative;
-            background: $gray200;
-            border-radius: 1rem;
-            width: 3rem;
-            height: 1.8rem;
-            &::before {
-                content: "";
-                position: absolute;
-                top: 50%;
-                left: 2px;
-                transform: translateY(-50%);
-                width: 1.4rem;
-                height: 1.4rem;
-                border-radius: 50%;
-                background-color: $gray0;
-                transition: all 0.25s linear;
-                z-index: 1;
-                cursor: pointer;
-            }
-            &:checked {
-                background-color: $gray800;
-                &::before {
-                    left: calc(100% - 1.6rem);
-                }
-            }
-        }
-        span {
-            font-weight: 700;
-            color: $gray800;
-        }
-    }
-}
-
-/* 위기 단계 태그 */
-span {
-    &.tag {
-        display: inline-block;
-        padding: .4rem .8rem;
-        border-radius: .6rem;
-        font-size: 1.6rem;
-        font-weight: 700;
-        &.safe {
-            color: $blue500;
-            background: $blue100;
-        }
-        &.caution {
-            color: $yellow500;
-            background: $yellow100;
-        }
-        &.danger {
-            color: $orange500;
-            background: $orange100;
-        }
-        &.critical {
-            color: $red500;
-            background: $red50;
-        }
-    }
-}
-
-/* 커스텀 셀렉트 */
-.select-wrap {
-    .select-box{ 
-        position: relative;
-        width: 17.7rem;
-        z-index: 10;
-        cursor: pointer;
-        .select-item{
-            position: relative;
-            width: 100%;
-            height: 5.2rem;
-            padding: 0 1.4rem;
-            font-weight: 500;
-            color: $gray400;
-            border-radius: 8px;
-            border: 1px solid $gray100;
-            background: $gray0;
-            overflow: hidden;
-            @include flexbox(row, flex-start, center);
-            gap: 2.8rem;
-            z-index: 1;
-            transition: border 0.25s, border-bottom 0s ease .25s, border-radius 0s ease .25s;
-            &::after{
-                position: absolute;
-                content: '';
-                width: 2.4rem;
-                height: 2.4rem;
-                right: 1.4rem;
-                top: 50%;
-                transform: translateY(-50%);
-                background: url(../../../assets/images/icon/arrow_down.svg) no-repeat center;
-                transition: all .25s;
-            }
-            &.on{
-                border: 1px solid $gray800;
-                border-bottom: none;
-                border-radius: 8px 8px 0 0;
-                transition: border 0.25s ;
-                & + .option-list {
-                    border: 1px solid $gray800;
-                    border-top: none;
-                }
-                &::after{
-                    transform: translateY(-50%) rotate(180deg);
-                }
-            }
-        }
-        .option-list{
-            width: 100%;
-            position: absolute;
-            top: 5.2rem;
-            border-radius: 0 0 8px 8px;
-            background: $gray0;
-            width: 100%;
-            max-height: 26rem;
-            border-top: none;
-            overflow-y: auto;
-            display: none;
-            > li{
-                position: relative;
-                display: flex;
-                align-items: center;
-                justify-content: flex-start;
-                height: 5.2rem;
-                padding: 0 1.4rem;
-                transition: all .25s;
-                a {
-                    width: 100%;
-                    height: 100%;
-                    @include flexbox(row, flex-start, center);
-                    gap: 2.8rem;
-                    span {
-                        position: relative;
-                        &:first-of-type {
-                            font-size: 1.8rem;
-                            font-weight: 500;
-                            color: $gray800;
-                            &::before {
-                                content: "";
-                                position: absolute;
-                                top: 50%;
-                                transform: translateY(-50%);
-                                right: -1.4rem;
-                                width: 1px;
-                                height: 1.4rem;
-                                background: $gray100;
-                            }
-                        }
-                        &:last-of-type {
-                            font-weight: 500;
-                            color: $gray400;
-                        }
-                    }
-                }
-                &:hover{
-                    background: $gray50;
-                    transition: all .25s;
-                }
-                &.on {
-                    a {
-                        font-weight: 700;
-                        color: $gray800;
-                    }
-                }
-            }
-        }
-    }
-    &.type01 {
-        .select-box {
-            width: 54.4rem;
-            .select-item {
-                height: 4rem;
-                border: 1px solid transparent;
-                span {
-                    position: relative;
-                    &:first-of-type {
-                        font-size: 1.8rem;
-                        font-weight: 600;
-                        color: $gray800;
-                        &::before {
-                            content: "";
-                            position: absolute;
-                            top: 50%;
-                            transform: translateY(-50%);
-                            right: -1.4rem;
-                            width: 1px;
-                            height: 1.4rem;
-                            background: $gray100;
-                        }
-                    }
-                    &:last-of-type {
-                        font-size: 1.6rem;
-                        font-weight: 500;
-                        color: $gray400;
-                    }
-                }
-                &.on{
-                    border: 1px solid $gray800;
-                    border-bottom: none;
-                }
-            }
-            .option-list {
-                top: 4rem;
-                max-height: 20rem;
-                li {
-                    height: 4rem;
-                    &.on {
-                        a {
-                            span {
-                                &:first-of-type {
-                                    font-weight: 700;
-                                }
-                                &:last-of-type {
-                                    font-weight: 700;
-                                    color: $gray800;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    &:not(.type01) {
-        .select-box {
-            .select-item.selected-custom {
-                color: $gray950;
-            }
-        }
-    }
-}
-
-/* 커스텀 textarea */
-.editor-wrap {
-    .editor {
-        position: relative;
-        height: 25.6rem;
-        padding: 1.2rem 1.4rem;
-        margin-bottom: .6rem;
-        color: $gray800;
-        font-weight: 500;
-        line-height: 1.8;
-        white-space: pre-wrap;
-        word-break: break-word;
-        outline: none;
-        border-radius: .8rem;
-        border: 1px solid $gray50;
-        background: rgba(255, 255, 255, 0.70);
-        overflow-y: auto;
-        &:empty {
-            &::before {
-                content: attr(data-placeholder);
-                color: $gray400;
-                font-weight: 500;
-                line-height: 1.8;
-                pointer-events: none;
-                display: block;
-                white-space: pre-wrap;
-            }
-        }
-        .bullet-line {
-            position: relative;
-            padding-left: 1.8rem;
-            font-weight: 500;
-            color: $gray800;
-            line-height: 1.8;
-            &::before {
-                content: '・';
-                position: absolute;
-                left: 0;
-                top: 0;
-                font-size: 1.6rem;
-                font-weight: 500;
-                line-height: 1.8;
-                color: $gray800;
-            }
-        }
-    }
-    .current-info {
-        @include flexbox (row, space-between, center);
-        .warning {
-            font-size: 1.4rem;
-            font-weight: 500;
-            color: #FF0606;
-            opacity: 0;
-        }
-        .count {
-            text-align: right;
-            font-size: 1.4rem;
-            font-weight: 500;
-            color: $gray400;
-        }
-    }
-    &.over {
-        .editor {
-            border: 1px solid #FF0606;
-        }
-        .current-info {
-            .warning {
-                opacity: 1;
-            }
-            .count {
-                .chk-byte {
-                    color: #FF0606;
-                }
-            }
-        }
-    }
-}
-
 /*토스트 메시지*/
 .toast-pop {
     opacity: 0;
     position: fixed;
-    bottom: -50%;
+    top: -50%;
     left: 50%;
     transform: translateX(-50%);
-    min-width: 44rem;
-    height: 6.7rem;
-    padding: 0 1.6rem;
+    width: calc(100% - 4rem);
+    max-width: 72.8rem;
+    margin: 0 auto;
+    padding: 1.4rem 1.6rem;
     color: $gray0;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 500;
-    text-align: center;
-    @include flexbox(column, center, center);
+    text-align: left;
     border-radius: 1.4rem;
     background: rgba(28, 29, 30, 0.70);
     backdrop-filter: blur(7px);
@@ -985,76 +317,7 @@ span {
     z-index: 999;
     &.active {
         opacity: 100%;
-        bottom: 6rem;
-    }
-}
-
-/* 페이지네이션 */
-/* pagenation */
-.pagination{
-    padding: 4rem 0 2rem;
-    &-inner{
-        @include flexbox(row, center, center);
-        > div{
-            @include flexbox(row, flex-start, center);
-            a{
-                width: 3.6rem;
-                height: 3.6rem;
-                font-size: 1.8rem;
-                font-weight: 500;
-                border-radius: 1rem;
-                background: transparent;
-                @include flexbox(row, center, center);
-                transition: all .25s;
-            }
-            span {
-                display: inline-block;
-                text-align: center;
-                width: 3.6rem;
-                font-size: 1.8rem;
-                font-weight: 500;
-            }
-            &.page-links {
-                a {
-                    &.on {
-                        background: $gray0;
-                    }
-                }
-            }
-        }
-    }
-}
-
-/* 우측 하단 플로팅 버튼 */
-.floating-btn {
-    position: fixed;
-    right: 6rem;
-    bottom: 6rem;
-    width: 8rem;
-    height: 8rem;
-    border-radius: 50%;
-    background: url(../../../assets/images/common/ixi_btn.svg) no-repeat center/contain;
-    box-shadow: 0px 4px 12px 0px rgba(185, 122, 255, 0.60);
-    z-index: 10;
-    cursor: pointer;
-}
-
-/* 불릿 */
-.bullet-line {
-    position: relative;
-    padding-left: 1.8rem;
-    font-weight: 500;
-    color: $gray800;
-    line-height: 1.8;
-    &::before {
-        content: '・';
-        position: absolute;
-        left: 0;
-        top: 0;
-        font-size: 1.6rem;
-        font-weight: 500;
-        line-height: 1.8;
-        color: $gray800;
+        top: 7rem;
     }
 }
 
@@ -1098,6 +361,90 @@ span {
                 width: 2.4rem;
                 height: 2.4rem;
                 background: url(../../../assets/images/icon/close.svg) no-repeat center/contain;
+            }
+        }
+        .btn-wrap {
+            button {
+                width: 100%;
+            }
+        }
+    }
+}
+
+/* 모달(팝업) */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    @include flexbox(row, center, center);
+    background: rgba(0, 0, 0, 0.3);
+    display: none;
+    z-index: 999;
+    &.on {
+        display: flex;
+    }
+    .inner {
+        position: relative;
+        width: calc(100% - 4rem);
+        max-width: 72.8rem;
+        margin: 0 auto;
+        border-radius: 1.6rem;
+        background: $gray0;
+        .modal-hd {
+            width: 100%;
+            padding: 2rem;
+            @include flexbox(row, space-between, flex-start);
+            strong {
+                display: inline-block;
+                width: calc(100% - 2.4rem);
+                font-size: 2rem;
+                font-weight: 700;
+                color: #292B2E;
+            }
+            .close-btn {
+                width: 2.4rem;
+                height: 2.4rem;
+                border: none;
+                background: url(../../../assets/images/icon/close.svg) no-repeat center/contain;
+            }
+        }
+        .modal-con {
+            width: 100%;
+            padding: 0 2rem;
+            p {
+                font-size: 1.6rem;
+                font-weight: 500;
+                color: $gray600;
+            }
+        }
+        .btn-wrap {
+            width: 100%;
+            padding: 2rem;
+            button {
+                width: 100%;
+                height: 4.4rem;
+                color: $gray0;
+                font-size: 1.6rem;
+                font-weight: 700;
+                border-radius: 1rem;
+                background: $gray950;
+            }
+        }
+    }
+    &.type01 {
+        .inner {
+            .btn-wrap {
+                @include flexbox(row, center, center);
+                gap: .6rem;
+                button {
+                    width: calc(50% - .3rem);
+                    &:first-child {
+                        color: $gray950;
+                        background: $gray50;
+                    }
+                }
             }
         }
     }

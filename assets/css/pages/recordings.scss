@@ -8,34 +8,12 @@
         margin: 0 auto;
         background: $gray0;
         header {
-            width: 100%;
-            position: sticky;
-            top: 0;
-            left: 0;
-            border-bottom: 1px solid #F0F3F4;
-            background: $gray0;
-            backdrop-filter: blur(2px);
-            z-index: 10;
             > .inner {
-                position: relative;
-                width: 100%;
-                height: 6.2rem;
-                padding: 1.3rem 2rem;
-                @include flexbox(row, space-between, center);
-                .back-btn {
-                    width: 2.4rem;
-                    height: 2.4rem;
-                    padding: 0;
-                    background: url(../../../assets/images/icon/back.svg) no-repeat center/contain;
-                }
                 .page-tit {
                     position: absolute;
                     top: 50%;
                     left: 50%;
                     transform: translate(-50%, -50%);
-                    font-size: 2rem;
-                    font-weight: 700;
-                    color: #292B2E;
                 }
                 .help-btn {
                     height: 3.2rem;
@@ -50,9 +28,6 @@
             }
         }
         main {
-            width: calc(100% - 4rem);
-            margin: 0 auto;
-            min-height: calc(100vh - 6.2rem);
             .inner {
                 .con-wrap {
                     margin-bottom: 7.7rem;
@@ -71,7 +46,8 @@
                             }
                         }
                     }
-                    .mic-wrap {
+                    .waveform-wrap {
+                        position: relative;
                         width: 100%;
                         height: 30rem;
                         border-radius: 1.6rem;
@@ -97,7 +73,7 @@
                             &.on {
                                 display: block;
                             }
-                            &.recording-btn {
+                            &.record-btn {
                                 background: url(../../../assets/images/icon/mic.svg) no-repeat center/3.2rem $secondary500;
                             }
                             &.pause-btn {
@@ -119,11 +95,6 @@
                     background: $gray0;
                     .complete-btn {
                         width: 100%;
-                        height: 5.2rem;
-                        font-weight: 700;
-                        color: $gray0;
-                        border-radius: 1rem;
-                        background: $gray950;
                     }
                 }
                 .bottom-sheet {
@@ -143,12 +114,6 @@
                                 padding: 1.2rem 2rem;
                                 .save-btn {
                                     width: 100%;
-                                    height: 5.2rem;
-                                    color: $gray0;
-                                    font-size: 1.6rem;
-                                    font-weight: 700;
-                                    border-radius: 1rem;
-                                    background: $gray950;
                                 }
                             }
                         }
@@ -157,13 +122,4 @@
             }
         }
     }
-}
-
-
-
-/* 0709 테스트 */
-#pause {
-    width: 6rem;
-    height: 6rem;
-    background: $secondary500;
 }

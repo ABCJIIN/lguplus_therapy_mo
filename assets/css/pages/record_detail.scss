@@ -17,41 +17,16 @@
         margin: 0 auto;
         background: $gray0;
         header {
-            width: 100%;
-            position: sticky;
-            top: 0;
-            left: 0;
-            border-bottom: 1px solid #F0F3F4;
-            background: $gray0;
-            backdrop-filter: blur(2px);
-            z-index: 10;
             > .inner {
-                position: relative;
-                width: 100%;
-                height: 6.2rem;
-                padding: 1.3rem 2rem;
-                @include flexbox(row, flex-start, center);
-                .back-btn {
-                    width: 2.4rem;
-                    height: 2.4rem;
-                    padding: 0;
-                    background: url(../../../assets/images/icon/back.svg) no-repeat center/contain;
-                }
                 .page-tit {
                     position: absolute;
                     top: 50%;
                     left: 50%;
                     transform: translate(-50%, -50%);
-                    font-size: 2rem;
-                    font-weight: 700;
-                    color: #292B2E;
                 }
             }
         }
         main {
-            width: calc(100% - 4rem);
-            margin: 0 auto;
-            min-height: calc(100vh - 6.2rem);
             .inner {
                 .con-wrap {
                     .info-wrap {
@@ -342,28 +317,10 @@
                         .btn-wrap {
                             border-top: 1px solid $gray100;
                             padding: 1.2rem 2rem;
-                            .upload-btn {
-                                width: 100%;
-                                height: 5.2rem;
-                                color: $gray0;
-                                font-size: 1.6rem;
-                                font-weight: 700;
-                                border-radius: 1rem;
-                                background: $gray950;
-                            }
                         }
                     }
                 }
             }
         }
     }
-}
-
-
-
-/* 0709 테스트 */
-#pause {
-    width: 6rem;
-    height: 6rem;
-    background: $secondary500;
 }
