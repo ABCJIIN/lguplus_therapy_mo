@@ -36,7 +36,7 @@
         main {
             width: calc(100% - 6rem);
             margin: 0 auto;
-            min-height: 100vh;
+            min-height: calc(var(--vh) * 100);
             @include flexbox(column, center, center);
             > .inner {
                 width: 100%;
