@@ -118,7 +118,7 @@
             > .inner {
                 width: 100%;
                 .empty {
-                    min-height: calc(100vh - 6.2rem);
+                    min-height: calc((var(--vh, 1vh) * 100) - 6.2rem);
                     @include flexbox(column, center, center);
                     gap: 2.4rem;
                     img {
