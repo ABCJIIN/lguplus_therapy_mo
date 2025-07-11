@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LG U+ 심리케어 서비스 - MO 스타일 가이드</title>
+    <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon">
+    <!-- css -->
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="./assets/css/font.css">
+    <link rel="stylesheet" href="./assets/css/styleGuide/style_guide.css">
+    <!-- js -->
+    <script src="./assets/js/jquery-3.7.1.min.js"></script>
+    <script src="./assets/js/common.js"></script>
+    <script src="./assets/js/toastPop.js"></script>
+</head>
+<body>
+    <div class="style-guide">
+        <section class="con-box">
+            <h3>가이드 탭</h3>
+            <div>
+                <ul class="tab-area">
+                    <li><a href="javascript:void(0)">1. Input</a></li>
+                    <li><a href="javascript:void(0)">2. Button</a></li>
+                    <li><a href="javascript:void(0)">3. Toast</a></li>
+                    <li><a href="javascript:void(0)">4. Modal</a></li>
+                </ul>
+            </div>
+        </section>
+        <section class="con-box">
+            <h3>1. Input</h3>
+            <div class="module-wrap">
+                <div>
+                    <strong>Text, Password</strong>
+                    <p>: Default 입력창</p>
+                </div>
+                <ul>
+                    <li>
+                        <div class="input-wrap">
+                            <input type="text" placeholder="가입하신 E-mail을 입력해 주세요.">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="input-wrap">
+                            <input type="password" placeholder="비밀번호를 입력해 주세요.">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="module-wrap">
+                <div>
+                    <strong>Input checkbox</strong>
+                    <p>: 커스텀 체크박스</p>
+                </div>
+                <ul>
+                    <li>
+                        <div class="input-wrap checkbox disabled">
+                            <input id="checkbox01_01" type="checkbox" name="check-sample" disabled />
+                            <label for="checkbox01_01">비활성화</label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="input-wrap checkbox">
+                            <input id="checkbox01_02" type="checkbox" name="check-sample" checked disabled />
+                            <label for="checkbox01_02">비활성화 - 선택</label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="input-wrap checkbox">
+                            <input id="checkbox01_03" type="checkbox" name="check-sample" />
+                            <label for="checkbox01_03">체크박스</label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section class="con-box">
+            <h3>2. Button</h3>
+            <div class="module-wrap">
+                <div>
+                    <strong>Button</strong>
+                    <p>: 로그인 및 화면 하단 버튼</p>
+                </div>
+                <ul>
+                    <li>
+                        <button class="type10" type="button">로그인</button>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section class="con-box">
+            <h3>3. Toast</h3>
+            <div class="module-wrap">
+                <div>
+                    <strong>Toast</strong>
+                    <p>: 3초 유지 후 사라짐, 텍스트 길이에 따라 높이 유동적으로 변화</p>
+                </div>
+                <ul>
+                    <li>
+                        <button class="toast-btn" type="button">클릭하면 토스트 메시지가 나옵니다!</button>
+                        <div class="toast-pop">Toast Message 가 표시되고 있어요.<br>두 줄 이상인 경우에는 줄바꿈 됩니다.</div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section class="con-box">
+            <h3>4. Modal</h3>
+            <div class="module-wrap">
+                <div>
+                    <strong>Modal</strong>
+                    <p></p>
+                </div>
+                <ul>
+                    <li>
+                        <button class="modal-btn" type="button">클릭하면 모달(팝업)이 나옵니다!</button>
+                        <!-- .modal-con 영역 제거 후 사용 가능 -->
+                        <div class="modal">
+                            <div class="inner">
+                                <div class="modal-hd">
+                                    <strong>컨펌 필요 내용 또는 컨펌 요청<br>메시지로, 글자수에 따라 줄바꿈<br>하여 노출</strong>
+                                    <button class="close-btn" type="button" aria-label="닫기"></button>
+                                </div>
+                                <div class="modal-con">
+                                    <p>
+                                        서브 카피로 부가 설명이 필요한 경우만<br>
+                                        노출됩니다. 서브 카피 없이 메인 카피만<br>
+                                        제공할 수 있습니다.
+                                    </p>
+                                </div>
+                                <div class="btn-wrap">
+                                    <button type="button">BTN Text</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <button class="modal-btn type01" type="button">클릭하면 Type01 모달(팝업)이 나옵니다!</button>
+                        <!-- .modal-con 영역 제거 후 사용 가능 -->
+                        <div class="modal type01">
+                            <div class="inner">
+                                <div class="modal-hd">
+                                    <strong>컨펌 필요 내용 메시지</strong>
+                                    <button class="close-btn" type="button" aria-label="닫기"></button>
+                                </div>
+                                <div class="modal-con">
+                                    <p>
+                                        서브 카피로 부가 설명이 필요한 경우만<br>
+                                        노출됩니다. 서브 카피 없이 메인 카피만<br>
+                                        제공할 수 있습니다.
+                                    </p>
+                                </div>
+                                <div class="btn-wrap">
+                                    <button type="button">BTN Text</button>
+                                    <button type="button">BTN Text</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    <script>
+        // 탭
+        $('.tab-area li a').on('click', function () {
+            let index = $(this).closest('li').index() + 1;
+            let conBox = $('section.con-box');
+
+            $('html, body').animate({
+                scrollTop: conBox.eq(index).offset().top
+            }, 500);
+        });
+        // 모달(팝업) 버튼
+        $(".modal-btn").on("click", function(){
+            $(this).siblings(".modal:not(.type01)").addClass("on");
+        });
+
+        // Type01 모달(팝업) 버튼
+        $(".modal-btn.type01").on("click", function(){
+            $(this).siblings(".modal.type01").addClass("on");
+        });
+
+        // 모달 닫기
+        $(".close-btn").on("click", function(){
+            $(this).closest(".modal").removeClass("on");
+        });
+    </script>
+</body>
+</html>

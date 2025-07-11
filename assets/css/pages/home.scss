@@ -115,9 +115,6 @@
             }
         }
         main {
-            width: calc(100% - 4rem);
-            margin: 0 auto;
-            min-height: calc(100vh - 6.2rem);
             > .inner {
                 width: 100%;
                 .empty {
