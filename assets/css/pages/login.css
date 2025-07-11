@@ -37,7 +37,7 @@ body ::-webkit-scrollbar-thumb {
 .wrapper:not(.login) main {
   width: calc(100% - 4rem);
   margin: 0 auto;
-  min-height: calc(100vh - 6.2rem);
+  min-height: calc(var(--vh, 1vh) * 100 - 6.2rem);
 }
 
 /* header */
@@ -383,7 +383,7 @@ button:disabled {
 .wrapper.login main {
   width: calc(100% - 6rem);
   margin: 0 auto;
-  min-height: 100vh;
+  min-height: calc(var(--vh) * 100);
   display: flex;
   flex-direction: column;
   justify-content: center;

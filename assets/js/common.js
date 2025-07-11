@@ -17,7 +17,7 @@ $(function () {
             position: "fixed",
             width: "100%",
         });
-    }
+    };
 
     function unlockBodyScroll() {
         $("body").removeClass("scroll-lock").css({
@@ -26,27 +26,39 @@ $(function () {
             width: "",
         });
         $(window).scrollTop(scrollTop);
-    }
+    };
 
-    // 정렬 변경 - 바텀시트 열기
+    function updateBodyScrollLock() {
+        const isAnySheetOpen = $(".bottom-sheet.on").length > 0;
+        if (isAnySheetOpen) {
+            lockBodyScroll();
+        } else {
+            unlockBodyScroll();
+        }
+    };
+
+    // 페이지 최초 로딩 시도 포함해서 체크
+    $(document).ready(updateBodyScrollLock);
+
+    // 바텀시트 열기
     $(document).on("click", ".sorting-btn", function () {
-        lockBodyScroll();
         $(".bottom-sheet.sorting").addClass("on");
+        updateBodyScrollLock();
     });
 
-    // 공통 - 바텀시트 닫기 - 배경 클릭
+    // 바텀시트 닫기 - 배경 클릭
     $(document).on("click", ".bottom-sheet", function (e) {
         const $inner = $(this).find(".inner");
         if (!$inner.is(e.target) && $inner.has(e.target).length === 0) {
-        $(this).removeClass("on");
-        unlockBodyScroll();
+            $(this).removeClass("on");
+            updateBodyScrollLock();
         }
     });
 
-    // 공통 바텀시트 닫기 - 닫기 버튼
+    // 바텀시트 닫기 - 닫기 버튼
     $(document).on("click", ".bottom-sheet .close-btn", function () {
         $(this).closest(".bottom-sheet").removeClass("on");
-        unlockBodyScroll();
+        updateBodyScrollLock();
     });
 
     // 녹음 목록 - 편집모드
@@ -67,26 +79,4 @@ $(function () {
         const hasChecked = $checkboxes.is(":checked");
         $deleteBtn.prop("disabled", !hasChecked);
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 });
