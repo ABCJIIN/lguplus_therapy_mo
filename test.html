@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>WaveSurfer Record Plugin Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module">
+      import WaveSurfer from 'https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js';
+      import RecordPlugin from 'https://unpkg.com/wavesurfer.js@7/dist/plugins/record.esm.js';
+
+      let wavesurfer, record;
+      let scrollingWaveform = false;
+      let continuousWaveform = true;
+
+      const recButton = document.querySelector('#record');
+      const pauseButton = document.querySelector('#pause');
+      const micSelect = document.querySelector('#mic-select');
+      const progress = document.querySelector('#progress');
+
+      const updateProgress = (time) => {
+        const formattedTime = [
+          Math.floor((time % 3600000) / 60000),
+          Math.floor((time % 60000) / 1000),
+        ]
+          .map((v) => (v < 10 ? '0' + v : v))
+          .join(':');
+        progress.textContent = formattedTime;
+      };
+
+      const createWaveSurfer = () => {
+        if (wavesurfer) wavesurfer.destroy();
+
+        wavesurfer = WaveSurfer.create({
+          container: '#mic',
+          waveColor: 'rgb(200, 0, 200)',
+          progressColor: 'rgb(100, 0, 100)',
+        });
+
+        record = wavesurfer.registerPlugin(
+          RecordPlugin.create({
+            renderRecordedAudio: false,
+            scrollingWaveform,
+            continuousWaveform,
+            continuousWaveformDuration: 30,
+          })
+        );
+
+        record.on('record-end', (blob) => {
+          const container = document.querySelector('#recordings');
+          const recordedUrl = URL.createObjectURL(blob);
+
+          const playback = WaveSurfer.create({
+            container,
+            waveColor: 'rgb(200, 100, 0)',
+            progressColor: 'rgb(100, 50, 0)',
+            url: recordedUrl,
+          });
+
+          const button = container.appendChild(document.createElement('button'));
+          button.textContent = 'Play';
+          button.onclick = () => playback.playPause();
+          playback.on('pause', () => (button.textContent = 'Play'));
+          playback.on('play', () => (button.textContent = 'Pause'));
+
+          const link = container.appendChild(document.createElement('a'));
+          Object.assign(link, {
+            href: recordedUrl,
+            download: 'recording.' + (blob.type.split(';')[0].split('/')[1] || 'webm'),
+            textContent: 'Download recording',
+          });
+        });
+
+        pauseButton.style.display = 'none';
+        recButton.textContent = 'Record';
+
+        record.on('record-progress', updateProgress);
+      };
+
+      pauseButton.onclick = () => {
+        if (record.isPaused()) {
+          record.resumeRecording();
+          pauseButton.textContent = 'Pause';
+        } else {
+          record.pauseRecording();
+          pauseButton.textContent = 'Resume';
+        }
+      };
+
+      recButton.onclick = () => {
+        if (record.isRecording() || record.isPaused()) {
+          record.stopRecording();
+          recButton.textContent = 'Record';
+          pauseButton.style.display = 'none';
+          return;
+        }
+
+        recButton.disabled = true;
+        const deviceId = micSelect.value;
+        record.startRecording({ deviceId }).then(() => {
+          recButton.textContent = 'Stop';
+          recButton.disabled = false;
+          pauseButton.style.display = 'inline';
+        });
+      };
+
+      RecordPlugin.getAvailableAudioDevices().then((devices) => {
+        devices.forEach((device) => {
+          const option = document.createElement('option');
+          option.value = device.deviceId;
+          option.text = device.label || device.deviceId;
+          micSelect.appendChild(option);
+        });
+      });
+
+      document.querySelector('#scrollingWaveform').onclick = (e) => {
+        scrollingWaveform = e.target.checked;
+        if (scrollingWaveform && continuousWaveform) {
+          continuousWaveform = false;
+          document.querySelector('#continuousWaveform').checked = false;
+        }
+        createWaveSurfer();
+      };
+
+      document.querySelector('#continuousWaveform').onclick = (e) => {
+        continuousWaveform = e.target.checked;
+        if (continuousWaveform && scrollingWaveform) {
+          scrollingWaveform = false;
+          document.querySelector('#scrollingWaveform').checked = false;
+        }
+        createWaveSurfer();
+      };
+
+      createWaveSurfer();
+    </script>
+  </head>
+  <body>
+    <h1 style="margin-top: 0">Press Record to start recording 🎙️</h1>
+    <p>
+      📖 <a href="https://wavesurfer.xyz/docs/classes/plugins_record.RecordPlugin">Record plugin docs</a>
+    </p>
+    <button id="record">Record</button>
+    <button id="pause" style="display: none;">Pause</button>
+    <select id="mic-select">
+      <option value="" hidden>Select mic</option>
+    </select>
+    <label><input type="checkbox" id="scrollingWaveform" /> Scrolling waveform</label>
+    <label><input type="checkbox" id="continuousWaveform" checked /> Continuous waveform</label>
+    <p id="progress">00:00</p>
+    <div id="mic" style="border: 1px solid #ddd; border-radius: 4px; margin-top: 1rem"></div>
+    <div id="recordings" style="margin: 1rem 0"></div>
+    <style>
+      button {
+        min-width: 5rem;
+        margin: 1rem 1rem 1rem 0;
+      }
+    </style>
+  </body>
+</html>

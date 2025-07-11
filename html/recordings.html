@@ -12,6 +12,7 @@
     <!-- js -->
     <script src="../assets/js/jquery-3.7.1.min.js"></script>
     <script src="../assets/js/common.js"></script>
+    <script src="../assets/js/bottomSheet.js"></script>
 
     <!-- 오디오 파형 라이브러리 -->
     <script src="https://unpkg.com/wavesurfer.js@7"></script>
@@ -50,7 +51,7 @@
                     <button class="complete-btn" type="button">완료</button>
                 </div>
                 <!-- 녹음 파일명 입력 on class 추가 -->
-                <div class="bottom-sheet file-name on">
+                <div class="bottom-sheet file-name">
                     <div class="inner">
                         <div class="hd-wrap">
                             <strong>녹음 파일명 입력</strong>
@@ -95,18 +96,25 @@
             barGap: 2,
             barRadius: 2,
             scrollParent: true,
-            minPxPerSec: 50,
+            minPxPerSec: 5,
             dragToSeek: true,
             hideScrollbar: true,
             autoplay: false,
             autoScroll: true,
             // autoCenter: true, 녹음 중엔 작동안함
-            sampleRate: 44100,
+            // sampleRate: 44100,
         });
 
         // record 플러그인 등록
         recordPlugin = micWaveSurfer.registerPlugin(
-            WaveSurfer.Record.create()
+            WaveSurfer.Record.create({
+                renderRecordedAudio: false,
+                // continuousWaveform: true,
+                scrollingWaveform: true,
+                // continuousWaveformDuration: 10, // 최근 10초까지만 누적 파형을 표시
+                scrollingWaveformWindow: 5, // 최근 5초만 보여줌
+                mediaRecorderTimeslice: 1000, // 1초마다 chunk로 나눠서 처리
+            })
         );
 
         // 녹음 종료 시 blob 수집
