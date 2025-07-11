@@ -451,7 +451,7 @@ button:disabled {
   width: 100%;
 }
 .wrapper.home main > .inner .empty {
-  min-height: calc(100vh - 6.2rem);
+  min-height: calc(var(--vh, 1vh) * 100 - 6.2rem);
   display: flex;
   flex-direction: column;
   justify-content: center;
