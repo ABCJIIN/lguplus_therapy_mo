@@ -12,6 +12,8 @@
     <!-- js -->
     <script src="./assets/js/jquery-3.7.1.min.js"></script>
     <script src="./assets/js/common.js"></script>
+    <!-- test -->
+    <script src="./assets/js/toastPop.js"></script>
 </head>
 <body>
     <!-- edit class 추가 시 편집 모드 활성화 -->
@@ -26,7 +28,8 @@
                 </h1>
                 <div class="util-area">
                     <div class="btn-wrap">
-                        <button class="search-btn" type="button" aria-label="검색"></button>
+                        <!-- test -->
+                        <button class="search-btn toast-btn" type="button" aria-label="검색"></button>
                         <button class="edit-btn" type="button" aria-label="편집"></button>
                     </div>
                     <button class="cancel-btn" type="button">취소</button>
@@ -209,7 +212,37 @@
                     <button class="mic-btn" type="button" aria-label="마이크"></button>
                 </div>
             </div>
+            <!-- test -->
+            <div class="modal">
+                <div class="inner">
+                    <div class="modal-hd">
+                        <strong>컨펌 필요 내용 또는 컨펌 요청<br>메시지로, 글자수에 따라 줄바꿈<br>하여 노출</strong>
+                        <button class="close-btn" type="button" aria-label="닫기"></button>
+                    </div>
+                    <div class="modal-con">
+                        <p>
+                            서브 카피로 부가 설명이 필요한 경우만<br>
+                            노출됩니다. 서브 카피 없이 메인 카피만<br>
+                            제공할 수 있습니다.
+                        </p>
+                    </div>
+                    <div class="btn-wrap">
+                        <button type="button">BTN Text</button>
+                    </div>
+                </div>
+            </div>
+            <!-- test -->
+            <div class="toast-pop">Toast Message 가 표시되고 있어요.<br>두 줄 이상인 경우에는 줄바꿈 됩니다.</div>
         </main>
     </div>
+    <!-- test -->
+    <script>
+        $(".delete-btn").on("click", function(){
+            $(this).closest(".wrapper").find(".modal").addClass("on");
+        });
+        $(".modal .close-btn").on("click", function(){
+            $(this).closest(".modal").removeClass("on");
+        });
+    </script>
 </body>
 </html>
