@@ -178,52 +178,57 @@
                                 }
                                 .info-wrap {
                                     width: 100%;
-                                    .detail-wrap {
-                                        height: 2.3rem;
-                                        @include flexbox(row, space-between, center);
-                                        .client-info {
+                                    > a {
+                                        display: block;
+                                        width: 100%;
+                                        height: 100%;
+                                        .detail-wrap {
+                                            height: 2.3rem;
+                                            @include flexbox(row, space-between, center);
+                                            .client-info {
+                                                @include flexbox(row, flex-start, center);
+                                                gap: .8rem;
+                                                .client {
+                                                    font-size: 1.4rem;
+                                                    font-weight: 500;
+                                                    color: $gray800;
+                                                }
+                                                .session {
+                                                    font-size: 1.4rem;
+                                                    font-weight: 500;
+                                                    color: $gray400;
+                                                }
+                                            }
+                                        }
+                                        .title-wrap {
+                                            margin-bottom: .8rem;
+                                            @include flexbox(row, space-between, center);
+                                            strong {
+                                                @include ellipsis(1);
+                                                font-size: 1.8rem;
+                                                font-weight: 600;
+                                            }
+                                        }
+                                        .datetime-wrap {
                                             @include flexbox(row, flex-start, center);
-                                            gap: .8rem;
-                                            .client {
+                                            gap: 2.4rem;
+                                            span {
+                                                position: relative;
                                                 font-size: 1.4rem;
                                                 font-weight: 500;
-                                                color: $gray800;
+                                                color: $gray300;
                                             }
-                                            .session {
-                                                font-size: 1.4rem;
-                                                font-weight: 500;
-                                                color: $gray400;
-                                            }
-                                        }
-                                    }
-                                    .title-wrap {
-                                        margin-bottom: .8rem;
-                                        @include flexbox(row, space-between, center);
-                                        strong {
-                                            @include ellipsis(1);
-                                            font-size: 1.8rem;
-                                            font-weight: 600;
-                                        }
-                                    }
-                                    .datetime-wrap {
-                                        @include flexbox(row, flex-start, center);
-                                        gap: 2.4rem;
-                                        span {
-                                            position: relative;
-                                            font-size: 1.4rem;
-                                            font-weight: 500;
-                                            color: $gray300;
-                                        }
-                                        .date {
-                                            &::before {
-                                                content: "";
-                                                position: absolute;
-                                                right: -1.2rem;
-                                                top: 50%;
-                                                transform: translateY(-50%);
-                                                width: 1px;
-                                                height: 1.1rem;
-                                                background: $gray200;
+                                            .date {
+                                                &::before {
+                                                    content: "";
+                                                    position: absolute;
+                                                    right: -1.2rem;
+                                                    top: 50%;
+                                                    transform: translateY(-50%);
+                                                    width: 1px;
+                                                    height: 1.1rem;
+                                                    background: $gray200;
+                                                }
                                             }
                                         }
                                     }
