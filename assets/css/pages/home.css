@@ -526,58 +526,63 @@ button:disabled {
 .wrapper.home main > .inner .con-wrap .list-wrap ul li .info-wrap {
   width: 100%;
 }
-.wrapper.home main > .inner .con-wrap .list-wrap ul li .info-wrap .detail-wrap {
+.wrapper.home main > .inner .con-wrap .list-wrap ul li .info-wrap > a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.wrapper.home main > .inner .con-wrap .list-wrap ul li .info-wrap > a .detail-wrap {
   height: 2.3rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
-.wrapper.home main > .inner .con-wrap .list-wrap ul li .info-wrap .detail-wrap .client-info {
+.wrapper.home main > .inner .con-wrap .list-wrap ul li .info-wrap > a .detail-wrap .client-info {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   gap: 0.8rem;
 }
-.wrapper.home main > .inner .con-wrap .list-wrap ul li .info-wrap .detail-wrap .client-info .client {
+.wrapper.home main > .inner .con-wrap .list-wrap ul li .info-wrap > a .detail-wrap .client-info .client {
   font-size: 1.4rem;
   font-weight: 500;
   color: #434547;
 }
-.wrapper.home main > .inner .con-wrap .list-wrap ul li .info-wrap .detail-wrap .client-info .session {
+.wrapper.home main > .inner .con-wrap .list-wrap ul li .info-wrap > a .detail-wrap .client-info .session {
   font-size: 1.4rem;
   font-weight: 500;
   color: #7A8A93;
 }
-.wrapper.home main > .inner .con-wrap .list-wrap ul li .info-wrap .title-wrap {
+.wrapper.home main > .inner .con-wrap .list-wrap ul li .info-wrap > a .title-wrap {
   margin-bottom: 0.8rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
-.wrapper.home main > .inner .con-wrap .list-wrap ul li .info-wrap .title-wrap strong {
+.wrapper.home main > .inner .con-wrap .list-wrap ul li .info-wrap > a .title-wrap strong {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: 1.8rem;
   font-weight: 600;
 }
-.wrapper.home main > .inner .con-wrap .list-wrap ul li .info-wrap .datetime-wrap {
+.wrapper.home main > .inner .con-wrap .list-wrap ul li .info-wrap > a .datetime-wrap {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   gap: 2.4rem;
 }
-.wrapper.home main > .inner .con-wrap .list-wrap ul li .info-wrap .datetime-wrap span {
+.wrapper.home main > .inner .con-wrap .list-wrap ul li .info-wrap > a .datetime-wrap span {
   position: relative;
   font-size: 1.4rem;
   font-weight: 500;
   color: #A7B5BC;
 }
-.wrapper.home main > .inner .con-wrap .list-wrap ul li .info-wrap .datetime-wrap .date::before {
+.wrapper.home main > .inner .con-wrap .list-wrap ul li .info-wrap > a .datetime-wrap .date::before {
   content: "";
   position: absolute;
   right: -1.2rem;
