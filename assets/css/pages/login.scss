@@ -10,8 +10,8 @@
         &::before {
             content: "";
             position: absolute;
-            top: 0;
-            left: 0;
+            top: -24rem;
+            left: -18rem;
             width: 35.14rem;
             height: 56.25rem;
             transform: rotate(34.603deg);
@@ -23,8 +23,8 @@
         &::after {
             content: "";
             position: absolute;
-            bottom: 0;
-            right: 0;
+            bottom: -21rem;
+            right: -21rem;
             width: 49.98rem;
             height: 41rem;
             transform: rotate(-29.923deg);
